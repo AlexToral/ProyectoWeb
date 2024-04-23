@@ -1,0 +1,45 @@
+body{
+    background-color: #e8feff;
+    height: 100%;
+}
+
+.bgnav{
+    background-color: #5b707e;
+}
+
+.dropdown-item:hover{
+    background-color: #acfaff;
+}
+
+.transparent_btn{
+    background-color: transparent;
+    border: none;
+}
+
+
+#barMenu{
+    font-size:x-large;
+    color: white;
+}
+
+#left_sidebar{
+    background-color: #d6f2eb;
+}
+
+#right_sidebar{
+    background-color: aqua;
+}
+
+
+.sidebar-item {
+    margin-bottom: 10px; /* Puedes ajustar el valor del margen según tus necesidades */
+}
+.imageCarousel{
+    height: 200px;
+    width: 500px;
+}
+
+.CarouselContainment{
+    align-self: center;
+
+}
