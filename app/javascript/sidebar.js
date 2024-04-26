@@ -1,5 +1,6 @@
 "use strict";
 let sb = document.getElementById("right_sidebar");
+
 function Sidebarcheck(){
     
     console.log("HOLA");

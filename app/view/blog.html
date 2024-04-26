@@ -27,20 +27,142 @@
           <i class="fa fa-user-circle" aria-hidden="true"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
-          <a class="dropdown-item" href="#">LOGIN</a>
-          <a class="dropdown-item" href="#">REGISTER</a>
+          <a class="dropdown-item" href="#Login" data-toggle="modal">LOGIN</a>
+          <a class="dropdown-item" href="#registro" data-toggle="modal">REGISTER</a>
         </div>
       </div>
       <a id="barMenu" onclick="Sidebarcheck()"><i class="fas fa-bars"></i> </a>
     </nav> <!--NAVBAR-->
   
-   
+     <!--LOGIN MODAL-->
+  <div class="modal fade" id="Login" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-login text-white">
+                <h5 class="modal-title">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body bg-login-body">
+                <form>
+                    <div class="form-group">
+                        <label for="CorreoLogin">Correo</label>
+                        <div class="input-group">
+                            <input type="text" name="CorreoLogin" id="CorreoLogin" class="form-control"
+                                placeholder="Ingresa tu correo electrónico">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contraseNa">Contraseña</label>
+                        <div class="input-group">
+                            <input type="password" name="contraseNa" id="contraseNa" class="form-control"
+                                placeholder="Ingresa tu contraseña">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fa fa-key" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </div>
+                </form>
+                <p class="text-center">¿No tienes cuenta? <a href="#" data-dismiss="modal" data-toggle="modal"
+                        data-target="#registro">Regístrate aquí</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+  <!--LOGIN MODAL-->
+
+  <!--REGISTER MODAL-->
+  <div class="modal fade" id="registro" tabindex="-1" role="dialog" aria-labelledby="registroTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-registro text-white">
+                <h5 class="modal-title">Registro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body bg-registro-body">
+                <form>
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="correoRegistro">Correo</label>
+                        <input type="email" class="form-control" id="correoRegistro" placeholder="Ingresa tu correo electrónico">
+                    </div>
+                    <div class="form-group">
+                        <label for="contraseñaRegistro">Contraseña</label>
+                        <input type="password" class="form-control" id="contraseñaRegistro" placeholder="Ingresa tu contraseña">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmarContraseña">Confirmar Contraseña</label>
+                        <input type="password" class="form-control" id="confirmarContraseña" placeholder="Confirma tu contraseña">
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block">Registrarse</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--REGISTER MODAL-->
+
     <div class="container-fluid"> <!-- CONTENIDO-->
       <div class="row">
-  
-        <div class="col-md-1" id="left_sidebar">l</div> <!-- Left Sidebar -->
-        <div class="col-md-9 container" id="Main_Content">a</div> <!-- Main Content Container -->
-  
+   
+        <div class="col-md-6" id="left">  <!-- Left Sidebar -->
+          <div class="whitespace"></div>
+
+          <div class="cardBody col-md-12">
+            <div class="row">
+              <img class="card-img" src="https://picsum.photos/200/300">
+              <h3 class="cardTitle">Titulo max 28 caracteres</h3>
+              <p class="cardText">Una descripcion muy cool, que esta muy cool</p>
+            </div>
+          </div>
+          <div class="whitespace"></div>
+
+          <div class="cardBody col-md-12">
+            <div class="row">
+              <img class="card-img" src="https://picsum.photos/200/301">
+              <h3 class="cardTitle">Titulo max 28 caracteres</h3>
+              <p class="cardText">Una descripcion muy cool, que esta muy cool</p>
+            </div>
+          </div>
+          <div class="whitespace"></div>
+
+          <div class="cardBody col-md-12">
+            <div class="row">
+              <img class="card-img" src="https://picsum.photos/200/320">
+              <h3 class="cardTitle">Titulo max 28 caracteres</h3>
+              <p class="cardText">Una descripcion muy cool, que esta muy cool</p>
+            </div>
+          </div>
+          <div class="whitespace"></div>
+          
+        </div> <!-- Left Sidebar -->
+
+        <div class="col-md-4 container" id="Main_Content"> <!-- Main Content Container -->
+          <div class="whitespace"></div>
+          <div class="card text-left">
+            <img class="card-img-preview" src="https://picsum.photos/200/320">
+            <div class="card-body">
+              <h4 class="card-title">Title</h4>
+              <p class="card-text">Una descripcion muy cool, que esta muy cool</p>
+              <p>TIEMPO DE LECTURA: 12:00 minutos</p>
+              <p>AUTOR: Alex</p>
+              <p>FECHA: 25/04/2024</p>
+              <p>TEMAS: salud mental, dinero, etc</p>
+            </div>
+          </div>
+        </div> <!-- Main Content Container -->
   
         <div class="col-md-2 align-items-center justify-content-end" id="right_sidebar"> <!--RightSidebar-->
           <div class="sidebar-item">
@@ -48,7 +170,7 @@
             <span>Settings</span>
           </div>
           <div class="sidebar-item">
-            <a href="#"><i class="fas fa-newspaper fa-m fa-fw"></i></a>
+            <a href="blog.html"><i class="fas fa-newspaper fa-m fa-fw"></i></a>
             <span>Articulos</span>
           </div>
           <div class="sidebar-item">
@@ -65,11 +187,28 @@
             <span>Privacy</span>
           </div>
         </div> <!-- Right Sidebar -->
-  
-  
-      </div> 
+
     </div> <!--CONTENIDO-->
 
+    <nav aria-label="Page navigation"> <!--Page Navigation-->
+      <ul class="pagination justify-content-center">
+        <li class="page-item disabled">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div> <!--Page Navigation-->
   <!-- Optional JavaScript -->
   <script src="./../javascript/sidebar.js"></script>
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

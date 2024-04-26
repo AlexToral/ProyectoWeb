@@ -13,94 +13,193 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css" </head> <body>
 
-    <nav class="bgnav navbar navbar-expand-sm navbar-light"> <!--NAVBAR-->
-      <a class="navbar-brand" href="home.html">LOGO</a>
-      <div class="flex-grow-1">
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control col-lg-5" type="text" placeholder="Lorem Ipsum">
-          <button class="btn btn-info" type="submit"><i class="fa fa-search" aria-hidden="true"></i></i></button>
-        </form>
+  <nav class="bgnav navbar navbar-expand-sm navbar-light">
+    <!--NAVBAR-->
+    <a class="navbar-brand" href="home.html">LOGO</a>
+    <div class="flex-grow-1">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control col-lg-5" type="text" placeholder="Lorem Ipsum">
+        <button class="btn btn-info" type="submit"><i class="fa fa-search" aria-hidden="true"></i></i></button>
+      </form>
+    </div>
+    <div class="btn-group">
+      <button class="transparent_btn btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-user-circle" aria-hidden="true"></i>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
+        <a class="dropdown-item" href="#Login" data-toggle="modal">LOGIN</a>
+        <a class="dropdown-item" href="#registro" data-toggle="modal">REGISTER</a>
       </div>
-      <div class="btn-group">
-        <button class="transparent_btn btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-user-circle" aria-hidden="true"></i>
-        </button>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
-          <a class="dropdown-item" href="#">LOGIN</a>
-          <a class="dropdown-item" href="#">REGISTER</a>
-        </div>
-      </div>
-      <a id="barMenu" onclick="Sidebarcheck()"><i class="fas fa-bars"></i> </a>
-    </nav> <!--NAVBAR-->
-  
-   
-    <div class="container-fluid"> <!-- CONTENIDO-->
-      <div class="row">
-  
-        <div class="col-md-1" id="left"></div> <!-- Left Sidebar -->
-        <div class="col-md-9 container" id="Main_Content">
-          <label for="Nombre" >Nombre</label>
-          <br>
-          <input placeholder="Nombre">
-          <br>
-          <label for="Apellido" >Apellido</label>
-          <br>
-          <input placeholder="Apellido">
-          <br>
-          <label for="Email" >Email</label>
-          <br>
-          <input placeholder="Email">
-          <br>
-          <label for="Fecha" >Fecha de Nacimiento</label>
-          <br>
-          <input type="date">
-          <br>
-          <label for="FotoPerfil" >Foto de Perfil</label>
-          <br>
-          <input type="file">
-          <br>
-          <label for="Contacto 1" >Contacto 1</label>
-          <br>
-          <input type="tel">
-          <br>
-          <label for="Contacto 2" >Contacto 2</label>
-          <br>
-          <input type="tel">
-          <br>
-          <button type="button" class="btn btn-danger">Cancelar</button>
-          <button type="button" class="btn btn-success">Confirmar</button>
+    </div>
+    <a id="barMenu" onclick="Sidebarcheck()"><i class="fas fa-bars"></i> </a>
+  </nav>
+  <!--NAVBAR-->
 
-        </div> <!-- Main Content Container -->
-  
-  
-        <div class="col-md-2 align-items-center justify-content-end" id="right_sidebar"> <!--RightSidebar-->
-          <div class="sidebar-item">
-            <a onclick="SidebarHide()"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
-            <span>Settings</span>
+
+  <!--LOGIN MODAL-->
+  <div class="modal fade" id="Login" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-login text-white">
+                <h5 class="modal-title">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body bg-login-body">
+                <form>
+                    <div class="form-group">
+                        <label for="CorreoLogin">Correo</label>
+                        <div class="input-group">
+                            <input type="text" name="CorreoLogin" id="CorreoLogin" class="form-control"
+                                placeholder="Ingresa tu correo electrónico">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contraseNa">Contraseña</label>
+                        <div class="input-group">
+                            <input type="password" name="contraseNa" id="contraseNa" class="form-control"
+                                placeholder="Ingresa tu contraseña">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fa fa-key" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </div>
+                </form>
+                <p class="text-center">¿No tienes cuenta? <a href="#" data-dismiss="modal" data-toggle="modal"
+                        data-target="#registro">Regístrate aquí</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+  <!--LOGIN MODAL-->
+
+  <!--REGISTER MODAL-->
+  <div class="modal fade" id="registro" tabindex="-1" role="dialog" aria-labelledby="registroTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-registro text-white">
+                <h5 class="modal-title">Registro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body bg-registro-body">
+                <form>
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="correoRegistro">Correo</label>
+                        <input type="email" class="form-control" id="correoRegistro" placeholder="Ingresa tu correo electrónico">
+                    </div>
+                    <div class="form-group">
+                        <label for="contraseñaRegistro">Contraseña</label>
+                        <input type="password" class="form-control" id="contraseñaRegistro" placeholder="Ingresa tu contraseña">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmarContraseña">Confirmar Contraseña</label>
+                        <input type="password" class="form-control" id="confirmarContraseña" placeholder="Confirma tu contraseña">
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block">Registrarse</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--REGISTER MODAL-->
+
+  <div class="container-fluid">
+    <!-- CONTENIDO-->
+    <div class="row">
+
+      <div class="col-md-9 container" id="Main_Content">
+        <H1 class="text-center">HOLA USUARIO</H1>
+        <div class="row">
+          <div class="personal_Data col-md-7">
+            <label for="Nombre">Nombre</label>
+            <br>
+            <input placeholder="Nombre">
+            <br>
+            <label for="Apellido">Apellido</label>
+            <br>
+            <input placeholder="Apellido">
+            <br>
+            <label for="Email">Email</label>
+            <br>
+            <input placeholder="Email">
+            <br>
+            <label for="Fecha">Fecha de Nacimiento</label>
+            <br>
+            <input type="date">
+            <br>
           </div>
-          <div class="sidebar-item">
-            <a href="#"><i class="fas fa-newspaper fa-m fa-fw"></i></a>
-            <span>Articulos</span>
+          <div class="OthersDatos col-md-5">
+            <label for="FotoPerfil">Foto de Perfil</label>
+            <br>
+            <input type="file">
+            <br>
+            <br>
+            <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" style="height: 128px; width:128px;">
+            <br>
+            <label for="Contacto 1">Contacto 1</label>
+            <br>
+            <input type="tel">
+            <br>
+            <label for="Contacto 2">Contacto 2</label>
+            <br>
+            <input type="tel">
+            <br>
+            <br>
+            <button type="button" class="btn btn-info"><i class="fa fa-pen" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-danger">Cancelar</button>
+            <button type="button" class="btn btn-success">Confirmar</button>
           </div>
-          <div class="sidebar-item">
-            <a href="personal_data.html"> <i class="fa fa-user" aria-hidden="true">
-                <span>Account Settings</span></i></a>
-          </div>
-          <div class="sidebar-item">
-            <a href=""><i class="fa fa-bell" aria-hidden="true"></i></a>
-            <span>Notifications</span>
-            <input type="checkbox">
-          </div>
-          <div class="sidebar-item">
-            <a href=""><i class="fa fa-lock" aria-hidden="true"></i></a>
-            <span>Privacy</span>
-          </div>
-        </div> <!-- Right Sidebar -->
-  
-  
-      </div> 
-    </div> <!--CONTENIDO-->
+          
+        </div>
+
+        
+
+      </div> <!-- Main Content Container -->
+
+
+      <div class="col-md-2 align-items-center justify-content-end" id="right_sidebar"><!--RightSidebar-->
+        
+        <div class="sidebar-item">
+          <a onclick="SidebarHide()"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+          <span>Settings</span>
+        </div>
+        <div class="sidebar-item">
+          <a href="blog.html"><i class="fas fa-newspaper fa-m fa-fw"></i></a>
+          <span>Articulos</span>
+        </div>
+        <div class="sidebar-item">
+          <a href="personal_data.html"> <i class="fa fa-user" aria-hidden="true">
+              <span>Account Settings</span></i></a>
+        </div>
+        <div class="sidebar-item">
+          <a href=""><i class="fa fa-bell" aria-hidden="true"></i></a>
+          <span>Notifications</span>
+          <input type="checkbox">
+        </div>
+        <div class="sidebar-item">
+          <a href=""><i class="fa fa-lock" aria-hidden="true"></i></a>
+          <span>Privacy</span>
+        </div>
+      </div> <!-- Right Sidebar -->
+
+
+    </div>
+  </div>
+  <!--CONTENIDO-->
 
   <!-- Optional JavaScript -->
   <script src="./../javascript/sidebar.js"></script>

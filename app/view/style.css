@@ -27,12 +27,30 @@ body{
 }
 
 #right_sidebar{
+    display: none;
+    height:100vh;
     background-color: aqua;
+    border-radius: 2%;
 }
 
+.bg-login{
+    background-color: #92a5a0;
+}
+
+.bg-login-body{
+    background-color: #d6f2eb;
+}
+
+.bg-registro{
+    background-color: #5b707e;
+}
+
+.bg-registro-body{
+    background-color: #92b4ca;
+}
 
 .sidebar-item {
-    margin-bottom: 10px; /* Puedes ajustar el valor del margen según tus necesidades */
+    margin-bottom: 10px; 
 }
 .imageCarousel{
     height: 200px;
@@ -41,4 +59,41 @@ body{
 
 .CarouselContainment{
     align-self: center;
+}
+
+.card-img{
+    width: 30vh;
+    height: 30vh;
+}
+
+.cardBody{
+    border-radius: 10%;
+    background-color: white;
+}
+
+.cardBody:hover{
+    background-color: #dbf1f2;
+}
+
+.cardTitle{
+    margin-left:31vh;
+    position:absolute;
+    white-space: nowrap;
+
+}
+.cardText{
+    margin-top: 6vh;
+    margin-left:31vh;
+    position:absolute;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+.whitespace{
+    height: 3vh;;
+}
+
+.card-img-preview{
+    width:inherit;
+    height: 30vh;
 }
