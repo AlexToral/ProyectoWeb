@@ -116,9 +116,29 @@
 
     <div class="container-fluid"> <!-- CONTENIDO-->
       <div class="row">
-  
-        <div class="col-md-1" id="left_sidebar">l</div> <!-- Left Sidebar -->
-        <div class="col-md-9 container" id="Main_Content">a</div> <!-- Main Content Container -->
+
+        <div class="col-md-9 container" id="Main_Content">
+          <div class="header"> 
+            <h1 class="text-center">TITULO MUY COOL</h1>
+            <div class="row">
+              <p class="header_element">Tiempo de lectura: 12 minutos</p>
+              <p class="header_element">Autor:Jose</p>
+              <p class="header_element">Fecha de creacion:12/04/02</p>             
+              <button class="header_element btn-trans" id="btn-like" onclick="stateChange()"> <i class="far fa-heart"></i></button><p id="number_of_likes">100</p>
+            </div>
+          </div>
+          <div class="whitespace"></div>
+          <div class="inside-content">
+            <span>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc libero ligula, blandit id felis at, maximus posuere turpis. 
+              Quisque ultricies ac sapien eu bibendum. Donec tortor lectus, tristique sit amet sem eu, tincidunt tempor ipsum. 
+              Aliquam porta arcu a lectus placerat, ut placerat ligula consectetur. Praesent in lorem at magna maximus ornare et sed nibh. 
+              Integer in felis eget dui aliquam porta pulvinar vel velit. Donec sollicitudin sapien sem, non porttitor erat feugiat sit amet. 
+              Nullam vulputate nunc vitae diam varius maximus. Donec lacinia metus eu erat tristique, eu accumsan arcu ultricies. 
+              Donec eu placerat sapien. Pellentesque eget porttitor metus.  
+            </span>
+            </div>
+        </div> <!-- Main Content Container -->
   
   
         <div class="col-md-2 align-items-center justify-content-end" id="right_sidebar"> <!--RightSidebar-->
@@ -150,7 +170,9 @@
     </div> <!--CONTENIDO-->
 
   <!-- Optional JavaScript -->
+  <script src="./../javascript/p.js"></script>
   <script src="./../javascript/sidebar.js"></script>
+  
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">

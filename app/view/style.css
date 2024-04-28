@@ -24,6 +24,7 @@ body{
 
 #left_sidebar{
     background-color: #d6f2eb;
+    height:100vh;
 }
 
 #right_sidebar{
@@ -96,4 +97,13 @@ body{
 .card-img-preview{
     width:inherit;
     height: 30vh;
+}
+
+.header_element{
+    margin-left: 5vh;
+}
+
+.btn-trans{
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0.0);
 }
