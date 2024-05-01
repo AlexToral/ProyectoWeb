@@ -7,16 +7,16 @@ class PostException {
 
 class Post //title, description,content, imageUrl, author, likes, comments, category
 {
-    constructor( title, description,content, imageUrl, author, likes, comments, category)
+    constructor( title, description,content, imageUrl, author, category)
     {
-        this._id = getPostDataBaseId();
+        //this._id = getPostDataBaseId();
         this._title = title;
         this._description = description;
         this._content = content;
         this._imageUrl = imageUrl;
         this._author = author;
-        this._likes = likes;
-        this._comments = comments;
+        this._likes = 0;
+        this._comments = 0;
         this._category = category;
     }
 
@@ -110,7 +110,11 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
         }
     set author(value)
     {
-        //queda pendiente para hacer la clase de usuarios
+        if (!( value instanceof User) ||value === undefined || value === "") 
+        {
+            throw new PostException("Se requiere un autor");
+        }
+        this._author = value;
     }
 
     set likes(value)

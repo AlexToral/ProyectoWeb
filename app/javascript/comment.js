@@ -7,12 +7,12 @@ class CommentException {
 
 class Comment //author, content, likes, postIn el postIn es el post en el que se hizo el comentario
 {
-    constructor(author, content, likes, postIn)
+    constructor(author, content, postIn)
     {
         // this._id = getUserDataBaseId(); no se si es buena idea tener un id para los comentarios, queda pendiente
         this._author = author;
         this._postIn = postIn;
-        this._likes = likes;
+        this._likes = 0;
         this._content = content;
         
     }
