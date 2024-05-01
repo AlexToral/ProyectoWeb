@@ -9,7 +9,7 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
 {
     constructor( title, description,content, imageUrl, author, likes, comments, category)
     {
-        this._id = getDataBaseId();
+        this._id = getPostDataBaseId();
         this._title = title;
         this._description = description;
         this._content = content;
@@ -140,3 +140,4 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
         this._category = value;
     }
 }
+//module.exports = Post;
