@@ -1,5 +1,6 @@
 "use strict";
 
+
 function jsonToUser(json) {
     let user = JSON.parse(json);
     return new User(user._name, user._mail, user._password);
@@ -27,4 +28,11 @@ function jsonToComment(json) {
     let comment = JSON.parse(json);
     return new Comment(comment._author, comment._content, comment._postIn);
 }
+
+exports.jsonToUser = jsonToUser;
+exports.userToJson = userToJson;
+exports.postToJson = postToJson;
+exports.jsonToPost = jsonToPost;
+exports.commentToJson = commentToJson;
+exports.jsonToComment = jsonToComment;
 
