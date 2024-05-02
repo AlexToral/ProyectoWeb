@@ -25,6 +25,7 @@
   "homepage": "https://github.com/AlexToral/ProyectoWeb#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "express": "^4.19.2",
     "nodemon": "^3.1.0"
   }
 }

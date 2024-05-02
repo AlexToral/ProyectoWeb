@@ -13,7 +13,12 @@ app.use(express.json());
 
 
 app.use(express.static(path.join(__dirname, 'view')));
+app.use(express.static(path.join(__dirname, 'javascript')));
 
+app.get('/javascript/utils.js', (req, res) => {
+    res.set('Content-Type', 'application/javascript');
+    res.sendFile(path.join(__dirname, 'javascript', 'utils.js'));
+});
 
 app.get(['/','/home'],(req,res)=>
 {
