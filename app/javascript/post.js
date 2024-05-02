@@ -144,4 +144,4 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
         this._category = value;
     }
 }
-//module.exports = Post;
+module.exports = Post;
