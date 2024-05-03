@@ -19,8 +19,11 @@ app.get('/javascript/utils.js', (req, res) => {
     res.set('Content-Type', 'application/javascript');
     res.sendFile(path.join(__dirname, 'javascript', 'utils.js'));
 });
-
-app.get(['/','/home'],(req,res)=>
+app.get(['/'],(req,res)=>
+{
+    res.sendFile(path.join(__dirname,'view','home.html'));
+});
+app.get(['/home'],(req,res)=>
 {
     res.sendFile(path.join(__dirname,'view','home.html'));
 });
