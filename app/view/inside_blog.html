@@ -126,7 +126,8 @@
               <p class="header_element">Tiempo de lectura: 12 minutos</p>
               <p class="header_element">Autor: Jose</p>
               <p class="header_element">Fecha de creacion: 12/04/2024</p>             
-              <button class="header_element btn-trans" id="btn-like" onclick="stateChange()"> <i class="far fa-heart"></i></button><p id="number_of_likes">100</p>
+              <a class="header_element" id="btn-like" onclick="stateChangeLikes()"> <i class="far fa-heart"></i></a><span id="number_of_likes">100</span>
+              <a class="header_element" id="btn-comments" href="#comentarios" data-toggle="modal"><i class="far fa-comment" aria-hidden="true"></i> Comentarios</a> 
             </div>
           </div>
           <div class="whitespace"></div>
@@ -140,7 +141,53 @@
               Donec eu placerat sapien. Pellentesque eget porttitor metus.  
             </span>
             </div>
+
+                    <!--COMENTARIOS-->
+        
+        <div class="container-fluid">
+          <div class="whitespace"></div>
+          <div class="row">
+
+            <div class="col-md-12 container" style="background-color: #e8feff;" id="Comentarios_Content"> <!--Caja de los comentarios-->
+
+              <div id="crearComentario"> <!--Caja para crear comentarios-->
+                <div class="row">
+                  <div class="col-md-1"> <img class="user_comment_photo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGzu3NaPLdn-EJx7iTK-s65246LPFfX3LGa_uPSYLCPg&s"> </div>
+                  <div class="col-md-11"><input class="col-md-12 comentarioInput" type="text" placeholder="Dejanos tu opinion..."> 
+                    <div class="d-flex justify-content-end">
+                      <button class="btn-trans">Comentar</button> <button class="btn-trans">Cancelar</button>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+              </div> <!--Caja para crear Comentarios-->
+
+              <div class="whitespace"></div> <!--Caja de los comentarios en texto-->
+              <div id="ComentariosBox">
+                <div class="row">
+                  <div class="col-md-1"> <img class="user_comment_photo" src="https://thispersondoesnotexist.com/"> </div>
+                  <div class="col-md-11"><span>User</span>
+                  <br>
+                  <span>Que buen blog, me rei mucho</span>
+                  <div class="d-flex justify-content-end">
+                    <button class="btn-danger" style="border-radius: 20px; margin-right: 10px;"><i class="fa fa-trash" aria-hidden="true"></i></button> 
+                    <button class="btn-info" style="border-radius: 20px;"><i class="fa fa-pen" aria-hidden="true"></i></button> 
+                    <button class="btn-trans">Confirmar</button> 
+                    <button class="btn-trans">Cancelar</button>
+                  </div>
+                  </div>
+                  
+              </div>
+              <hr>
+            </div> <!--Caja de los comentarios en texto-->
+            
+          </div>
+        </div> <!--Cajara de los comentarios-->
+
+
         </div> <!-- Main Content Container -->
+
+
   
   
         <div class="col-md-2 align-items-center justify-content-end" id="right_sidebar"><!--RightSidebar-->
@@ -177,13 +224,15 @@
           </div>
           
         </div> <!-- Right Sidebar -->
+
+
+
   
   
       </div> 
     </div> <!--CONTENIDO-->
 
   <!-- Optional JavaScript -->
-  <script src="./../javascript/p.js"></script>
   <script src="./../javascript/utils.js"></script>
   
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
