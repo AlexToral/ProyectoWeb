@@ -16,7 +16,7 @@
  <body>
 
     <nav class="bgnav navbar navbar-expand-sm navbar-light"> <!--NAVBAR-->
-      <a class="navbar-brand" href="home.html">LOGO</a>
+      <a class="navbar-brand" href="home.html" id="home-link">LOGO</a>
       <div class="flex-grow-1">
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control col-lg-5" type="text" placeholder="Lorem Ipsum">
@@ -194,21 +194,21 @@
           <span>Settings</span>
         </div>
         <div class="sidebar-item">
-          <a href="createblog.html"> <i class="fa fa-pen" aria-hidden="true">
+          <a href="createblog.html" id = "create-post-link"> <i class="fa fa-pen" aria-hidden="true">
               <span>Crear un blog</span></i>
           </a>
         </div>
         <div class="sidebar-item">
-          <a href="createblog.html"> <i class="fa fa-paint-brush" aria-hidden="true">
+          <a href="createblog.html" id = "edit-post-link"> <i class="fa fa-paint-brush" aria-hidden="true">
               <span>Editar un Blog</span></i></a>
         </div>
         <div class="sidebar-item">
-          <a href="blog.html"><i class="fas fa-newspaper fa-m fa-fw"></i>
+          <a href="blog.html" id = "post-link"><i class="fas fa-newspaper fa-m fa-fw"></i>
           <span>Articulos</span>
         </a>
         </div>
         <div class="sidebar-item">
-          <a href="personal_data.html"> <i class="fa fa-user" aria-hidden="true">
+          <a href="personal_data.html" id = "profile-link"> <i class="fa fa-user" aria-hidden="true">
               <span>Account Settings</span></i></a>
         </div>
 
@@ -222,6 +222,7 @@
 
   <!-- Optional JavaScript -->
   <script src="./../javascript/utils.js"></script>
+  <script src="./../javascript/ajax-handler.js"></script>
   <!-- <script src="./../javascript/user.js"></script>
   <script src="./../javascript/comment.js"></script>
   <script src="./../javascript/post.js"></script>
