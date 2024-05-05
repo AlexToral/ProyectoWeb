@@ -2,33 +2,20 @@
 "use strict";
 
 const express = require("express");
-const router = express.Router(); 
+const app = express();
+const router = express.Router();
+const path = require('path');
 const dataHandler = (require("../javascript/datahandler"));
 
+
+app.use(express.json());
+app.use(express.static(path.join(__dirname, 'view')));
+app.use(express.static(path.join(__dirname, 'javascript')));
 
 router.route('/')
 .get((req,res)=>
 {  
-    let query = req.query.filter;
-
-    let posts;
-
-    if(query===undefined)
-    {
-        try
-        {
-            posts = dataHandler.getPosts();
-        }
-        catch(error)
-        {
-            res.status(400).send("Error");
-        }
-        res.status(200).json(posts);
-    }
-    else
-    {
-        posts = dataHandler.findPost(query);
-    }
+    res.sendFile(path.join(__dirname,'..','view','blog.html'));
 
 });
 
@@ -58,16 +45,8 @@ router.route('/posts')
 router.route('/:id')
 .get((req,res)=>
 {  
-    if(req.params.id===undefined)
-    {
-        res.status(400).send("Error");
-    }
-    let post = dataHandler.getPostByID(req.params.id);
-    if (post===undefined)
-    {
-        res.status(404).send("Error, no se encontro el producto");
-    }
-    res.status(200).json(post);
+    res.sendFile(path.join(__dirname,'..','view','inside_blog.html'));
+
 });
 
 

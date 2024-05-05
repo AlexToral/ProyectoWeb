@@ -19,6 +19,7 @@ app.get('/javascript/utils.js', (req, res) => {
     res.set('Content-Type', 'application/javascript');
     res.sendFile(path.join(__dirname, 'javascript', 'utils.js'));
 });
+
 app.get(['/'],(req,res)=>
 {
     res.sendFile(path.join(__dirname,'view','home.html'));
@@ -32,6 +33,15 @@ app.get('/profile',(req,res)=>
 {
     res.sendFile(path.join(__dirname,'view','personal_data.html'));
 });
-app.listen(port, () => {
+
+app.get('/create-post',(req,res)=>
+{
+    res.sendFile(path.join(__dirname,'view','createblog.html'));
+});
+
+
+
+app.listen(port, () => 
+    {
     console.log(`Server corriendo en el puerto ${port}`);
-}); 
+    }); 
