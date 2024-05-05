@@ -7,10 +7,6 @@ const app = express();
 const port = 3000;
 const mongoose = require('mongoose'); // Importar mongoose
 const router = require('././javascript/router');
-const config = require('./../config');
-
-const username = config.mongodb.username;
-const password = config.mongodb.password;
 
 app.use(cors());
 app.use(router);
@@ -20,7 +16,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'view')));
 app.use(express.static(path.join(__dirname, 'javascript')));
 
-mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.0linyln.mongodb.net/`, {
+mongoose.connect('mongodb+srv://bato1993:bato1993@cluster0.0linyln.mongodb.net/', { // Conectar a MongoDB
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
