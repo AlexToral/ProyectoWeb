@@ -11,9 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     createPostLink.addEventListener('click', function(event) {
-        event.preventDefault(); // Detiene el comportamiento predeterminado del enlace
+        event.preventDefault(); 
 
-        // Realizar una solicitud AJAX para cargar la página
         fetch('/create-post')
             .then(response => {
                 if (!response.ok) {
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 return response.text();
             })
             .then(html => {
-                // Insertar el HTML de la página en el cuerpo del documento
                 document.body.innerHTML = html;
                 history.pushState(null, '', '/create-post');
                 window.location.reload();
@@ -34,9 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     homeLink.addEventListener('click', function(event) {
-        event.preventDefault(); // Detiene el comportamiento predeterminado del enlace
-
-        // Realizar una solicitud AJAX para cargar la página
+        event.preventDefault(); 
         fetch('/home')
             .then(response => {
                 if (!response.ok) {
@@ -45,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 return response.text();
             })
             .then(html => {
-                // Insertar el HTML de la página en el cuerpo del documento
                 document.body.innerHTML = html;
                 history.pushState(null, '', '/home');
                 window.location.reload();
@@ -78,9 +73,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     */
     postsLink.addEventListener('click', function(event) {
-        event.preventDefault(); // Detiene el comportamiento predeterminado del enlace
+        event.preventDefault(); 
 
-        // Realizar una solicitud AJAX para cargar la página
+       
         fetch('/posts')
             .then(response => {
                 if (!response.ok) {
@@ -89,7 +84,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 return response.text();
             })
             .then(html => {
-                // Insertar el HTML de la página en el cuerpo del documento
                 document.body.innerHTML = html;
                 history.pushState(null, '', '/posts');
                 window.location.reload();
@@ -100,9 +94,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     profileLink.addEventListener('click', function(event) {
-        event.preventDefault(); // Detiene el comportamiento predeterminado del enlace
+        event.preventDefault(); 
 
-        // Realizar una solicitud AJAX para cargar la página
         fetch('/profile')
             .then(response => {
                 if (!response.ok) {
@@ -111,7 +104,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 return response.text();
             })
             .then(html => {
-                // Insertar el HTML de la página en el cuerpo del documento
                 document.body.innerHTML = html;
                 history.pushState(null, '', '/profile');
                 window.location.reload();
