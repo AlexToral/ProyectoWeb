@@ -5,7 +5,12 @@ const cors = require('cors');
 const path = require('path');
 const app = express();
 const port = 3000;
+const mongoose = require('mongoose'); // Importar mongoose
 const router = require('././javascript/router');
+const config = require('./../config');
+
+const username = config.mongodb.username;
+const password = config.mongodb.password;
 
 app.use(cors());
 app.use(router);
@@ -25,16 +30,32 @@ db.once('open', () => {
 app.use(express.static(path.join(__dirname, 'view')));
 app.use(express.static(path.join(__dirname, 'javascript')));
 
+mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.0linyln.mongodb.net/`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'Error de conexión:')); // Manejo de errores
+db.once('open', () => {
+    console.log('Conectado a MongoDB'); // Conexión exitosa
+});
+
 app.get('/javascript/utils.js', (req, res) => {
     res.set('Content-Type', 'application/javascript');
     res.sendFile(path.join(__dirname, 'javascript', 'utils.js'));
 });
 
-app.get(['/'],(req,res)=>
+app.get('/javascript/ajax-handler.js', (req, res) => {
+    res.set('Content-Type', 'application/javascript');
+    res.sendFile(path.join(__dirname, 'javascript', 'ajax-handler.js'));
+});
+
+app.get('/',(req,res)=>
 {
     res.sendFile(path.join(__dirname,'view','home.html'));
 });
-app.get(['/home'],(req,res)=>
+app.get('/home',(req,res)=>
 {
     res.sendFile(path.join(__dirname,'view','home.html'));
 });
