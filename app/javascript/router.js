@@ -6,11 +6,16 @@ const postRouter = require('../routes/post_routes');
 const adminPostRouter = require('./../routes/admin_post');
 
 
+//router.use(userLogIn);
 
-function validateAdmin(req,res,next)
+router.use('/posts',postRouter);
+router.use('/admin/posts',userLogIn, adminPostRouter);
+
+function userLogIn(req,res,next)
 {
+    
     let adminToken = req.get('x-auth');
-    if(adminToken === undefined ||adminToken!="admin")
+    if(adminToken === undefined || adminToken!="admin")
     {
         res.status(403).send("Acceso no autorizado, no se cuenta con privilegios de administrador");
     }
@@ -19,8 +24,4 @@ function validateAdmin(req,res,next)
         next();
     }
 }  
-router.use('/posts',postRouter);
-router.use('/admin/posts',validateAdmin, adminPostRouter);
-
-
 module.exports = router;

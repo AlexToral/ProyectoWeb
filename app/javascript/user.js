@@ -185,4 +185,8 @@ class User //id, name, mail, imageUrl, followers, follows, birthDate, contact1, 
 
 }
 
+
+
+
 module.exports = User;
+module.exports = UserException;
