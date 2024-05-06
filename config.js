@@ -2,7 +2,7 @@
 
 module.exports = {
     mongodb: {
-        username: '',
-        password: ''
+        username: 'carlos',
+        password: 'bato1993'
     }
 };
