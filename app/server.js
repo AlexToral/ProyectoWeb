@@ -36,6 +36,7 @@ app.get('/javascript/utils.js', (req, res) => {
     res.sendFile(path.join(__dirname, 'javascript', 'utils.js'));
 });
 
+
 app.get('/javascript/ajax-handler.js', (req, res) => {
     res.set('Content-Type', 'application/javascript');
     res.sendFile(path.join(__dirname, 'javascript', 'ajax-handler.js'));

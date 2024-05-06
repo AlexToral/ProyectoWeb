@@ -1,5 +1,4 @@
 "use strict";
-
 //Sidebar 
 let sb = document.getElementById("right_sidebar");
 
@@ -31,4 +30,6 @@ function stateChangeLikes(){
       isLiked = true;
    }
 }
+
+
 //Inside_blog Buttons end
