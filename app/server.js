@@ -16,10 +16,6 @@ app.use(cors());
 app.use(router);
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/mi-base-de-datos', { // Conectar a MongoDB
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
 
 
 
