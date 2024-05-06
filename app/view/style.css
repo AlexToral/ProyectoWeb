@@ -3,6 +3,13 @@ body{
     height: 100%;
 }
 
+hr{
+    border: 0;
+    height: 1px; /* Aumento del grosor de la línea */
+    background-color: #333; /* Color más oscuro */
+    opacity: 0.8; /* Opacidad ligeramente aumentada */
+}
+
 .bgnav{
     background-color: #5b707e;
 }
@@ -106,4 +113,30 @@ body{
 .btn-trans{
     background-color: rgba(0, 0, 0, 0);
     border-color: rgba(0, 0, 0, 0.0);
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.btn-trans:hover:disabled{
+    background-color: #346373;
+}
+
+.btn-trans:hover{
+    background-color: #acfaff;
+}
+
+.user_comment_photo{
+    height: 10vh;
+    width: 10vh;
+    border-radius: 50%;
+}
+
+.comentarioInput{
+    border: 2px solid #5b707e;
+    background-color: #acfaff;
+}
+
+
+#number_of_likes{
+    margin-left: 10px;
 }

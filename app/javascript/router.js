@@ -6,6 +6,7 @@ const postRouter = require('../routes/post_routes');
 const adminPostRouter = require('./../routes/admin_post');
 
 
+
 function validateAdmin(req,res,next)
 {
     let adminToken = req.get('x-auth');
@@ -20,9 +21,6 @@ function validateAdmin(req,res,next)
 }  
 router.use('/posts',postRouter);
 router.use('/admin/posts',validateAdmin, adminPostRouter);
-router.get('/',(req,res)=>
-{
-    res.send("Bienvenido a foro de ayuda mental");
-}); 
+
 
 module.exports = router;

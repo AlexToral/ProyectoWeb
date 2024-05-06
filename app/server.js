@@ -9,7 +9,13 @@ const app = express();
 const port = 3000;
 const router = require('././javascript/router');
 
-mongoose.connect('mongodb+srv://Admin:bato1993@cluster0.0linyln.mongodb.net/', { // Conectar a MongoDB
+// Conexión a MongoDB con autenticación, utilizando las credenciales desde la configuración
+const config = require('./../config');
+const username = config.mongodb.username;
+const password = config.mongodb.password;
+
+// Conectar a MongoDB con credenciales
+mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.0linyln.mongodb.net/`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
@@ -27,19 +33,21 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'view')));
 app.use(express.static(path.join(__dirname, 'javascript')));
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'view', 'home.html'));
+});
+
+app.get('/profile', (req, res) => {
+    res.sendFile(path.join(__dirname, 'view', 'personal_data.html'));
+});
+
 app.get('/javascript/utils.js', (req, res) => {
     res.set('Content-Type', 'application/javascript');
     res.sendFile(path.join(__dirname, 'javascript', 'utils.js'));
 });
 
-app.get(['/','/home'],(req,res) =>
-{
-    res.sendFile(path.join(__dirname, 'view', 'home.html'));
-});
-
-app.get('/profile', (req, res) =>
-{
-    res.sendFile(path.join(__dirname, 'view', 'personal_data.html'));
+app.get('/create-post', (req, res) => {
+    res.sendFile(path.join(__dirname, 'view', 'createblog.html'));
 });
 
 app.listen(port, () => {
