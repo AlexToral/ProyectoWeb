@@ -248,7 +248,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if(response.ok)
         {
             const userResponse = await response.json();
-            console.log('Usuario logeado: ', userResponse);
+            localStorage.setItem('token', userResponse.token);
+            console.log('Usuario logeado token');
             document.getElementById('formularioLogin').reset();
             $('#Login').modal('hide');
         }

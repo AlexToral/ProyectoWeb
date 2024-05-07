@@ -6,7 +6,7 @@ const postRouter = require('../routes/post_routes');
 const adminPostRouter = require('./../routes/admin_post');
 const bcrypt = require('bcrypt');
 const saltRounds = 15; // Número de rondas de hashing
-
+const jwt = require('jsonwebtoken');
 
 //router.use(userLogIn);
 
@@ -35,6 +35,7 @@ router.post('/login', async (req, res) => {
     try {
         // Buscar el usuario en la base de datos por email
         const userRecord = await usersModel.findOne({ mail });
+        console.log(userRecord);
 
         if (!userRecord) {
             return res.status(404).json({ message: 'Contraseña o Usuario Incorrecto' });
@@ -46,8 +47,8 @@ router.post('/login', async (req, res) => {
         if(!passwordMatch){
             return res.status(404).json({ message: 'Contraseña o Usuario Incorrecto' });
         }
-
-        res.status(200).json({ message: 'Bienvenido', userName: userRecord.name });
+        const token = generateToken(userRecord);
+        res.status(200).json({ message: 'Bienvenido', userName: userRecord.name , token: token});
 
     } catch (error) {
         console.error(error);
@@ -85,6 +86,15 @@ router.post('/users', async (req, res) => {
     }
 });
 
+
+function generateToken(user) {
+    const payload = 
+    {
+        userId: user._id,
+    };
+    const token = jwt.sign(payload, 'candado', { expiresIn: '1h' }); // Firma el token con una clave secreta y establece un tiempo de expiración
+    return token;
+}
 
 
 
