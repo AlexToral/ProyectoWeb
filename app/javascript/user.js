@@ -187,6 +187,7 @@ class User //id, name, mail, imageUrl, followers, follows, birthDate, contact1, 
 
 document.addEventListener('DOMContentLoaded', function() {
     const createUserButton = document.getElementById('botonRegistrarse');
+    const loginUserButton = document.getElementById('loginButton');
     createUserButton.addEventListener('click', async function(event) {
         event.preventDefault();
         
@@ -212,7 +213,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: JSON.stringify(newUser)
         
             });
-            console.log('Se creo el usuario');
             
             if(response.ok) {
                 const newUserResponse = await response.json();
@@ -220,13 +220,53 @@ document.addEventListener('DOMContentLoaded', function() {
                 $('#registro').modal('hide');
             } else if(!response.ok) {
                 const errorMessage = await response.text();
-                console.error("Error al crear el usuario else if: ", errorMessage);
+                console.error("Error al crear el usuario: ", errorMessage);
             }
         } catch(error) {
             console.error("Error al crear el usuario: ", error);
         }
     });
+    loginUserButton.addEventListener('click', async function(event) 
+    {
+        event.preventDefault();
+        var mail = document.getElementById('CorreoLogin').value;
+        var password = document.getElementById('contraseNa').value;
+        var user = { mail: mail, password: password };
+        try
+        {
+            console.log('Iniciando sesión... ',user);
+            const response = await fetch ('/login', 
+            {
+                method: 'POST',
+                headers: 
+                {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            });
+        
+        if(response.ok)
+        {
+            const userResponse = await response.json();
+            console.log('Usuario logeado: ', userResponse);
+            document.getElementById('formularioLogin').reset();
+            $('#login').modal('hide');
+        }
+        else if(!response.ok)
+        {
+            const errorMessage = await response.text();
+            console.error("Error al iniciar sesión: ", errorMessage);
+        }
+        }
+        catch(error)
+        {
+            console.error("Error al iniciar sesión: ", error);
+        }
+    });
+        
+    
 });
+
 
 
 
