@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const userResponse = await response.json();
             console.log('Usuario logeado: ', userResponse);
             document.getElementById('formularioLogin').reset();
-            $('#login').modal('hide');
+            $('#Login').modal('hide');
         }
         else if(!response.ok)
         {

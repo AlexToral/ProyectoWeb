@@ -87,38 +87,6 @@ router.post('/users', async (req, res) => {
 
 
 
-router.post('/login', async (req, res) => 
-    {
-        try
-        {
-            console.log(req.body,"login ininini");
-            const {mail, password} = req.body;
-            console.log("login nombre: ",mail);
-            console.log("login password: ",password);
-            const user = await usersModel.findOne({mail: mail});
-            console.log(user);
-            if(user)
-            {
-                if(user.password === password)
-                {
-                    res.status(200).json({message: "Usuario logeado", userId: user.id});
-                }
-                else
-                {
-                    res.status(400).send("Error, contraseña incorrecta");
-                }
-            }
-            else
-            {
-                res.status(404).send("Error, usuario no encontrado");
-            }
-            
-        }
-        catch(error)
-        {
-            res.status(500).send("Error");
-        }
-    });
 
 
 
