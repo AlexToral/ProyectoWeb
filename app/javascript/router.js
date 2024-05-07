@@ -29,6 +29,33 @@ function userLogIn(req,res,next)
 }  
 
 
+router.post('/login', async (req, res) => {
+    const { mail, password } = req.body;
+
+    try {
+        // Buscar el usuario en la base de datos por email
+        const userRecord = await usersModel.findOne({ mail });
+
+        if (!userRecord) {
+            return res.status(404).json({ message: 'Contraseña o Usuario Incorrecto' });
+        }
+
+        // Comparar la contraseña proporcionada con el hash almacenado en la base de datos
+        const passwordMatch = await bcrypt.compare(password, userRecord.password);
+
+        if(!passwordMatch){
+            return res.status(404).json({ message: 'Contraseña o Usuario Incorrecto' });
+        }
+
+        res.status(200).json({ message: 'Bienvenido', userName: userRecord.name });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error en el servidor' });
+    }
+});
+
+
 router.post('/users', async (req, res) => {
     try {
         const { name, mail, password, imageUrl, followers, follows, birthDate, contact1, contact2 } = req.body;
