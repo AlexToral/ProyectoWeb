@@ -32,9 +32,16 @@ router.post('/users', async (req, res) =>
         try
         {
            const {id, name, mail, imageUrl, followers, follows, birthDate, contact1, contact2} = req.body;
-           const user = new usersModel({id, name, mail, imageUrl, followers, follows, birthDate, contact1, contact2});
+           const checkname = await usersModel.findOne({name: name});
+           if(checkname)
+           {
+               res.status(400).send("Error, el nombre de usuario ya existe");
+           }
+           else{
+           const user = new usersModel({name, mail, imageUrl, followers, follows, birthDate, contact1, contact2});
             user.save();
             res.status(200).json({ message: "Usuario creado", userId: user.id });
+           }
         }
         catch(error)
         {

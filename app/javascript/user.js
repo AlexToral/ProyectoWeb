@@ -216,13 +216,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if(response.ok) {
                 const newUserResponse = await response.json();
-                var modal = document.getElementById('registro');
-                modal.classList.remove('show');
-                modal.setAttribute('aria-hidden', 'true');
-                modal.setAttribute('style', 'display: none');
-                document.getElementsByClassName('modal-backdrop')[0].remove();
-                document.body.classList.remove('modal-open');
-                
+                $('#formularioRegistro')[0].reset();
+                $('#registro').modal('hide');
             } else if(!response.ok) {
                 const errorMessage = await response.text();
                 console.error("Error al crear el usuario else if: ", errorMessage);
