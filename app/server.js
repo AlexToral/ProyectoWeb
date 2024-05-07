@@ -7,6 +7,7 @@ const mongoose = require('mongoose'); // Importar mongoose
 
 const app = express();
 const port = 3000;
+app.use(express.json());
 const router = require('././javascript/router');
 
 // Conexión a MongoDB con autenticación, utilizando las credenciales desde la configuración
@@ -26,8 +27,8 @@ db.once('open', () => {
     console.log('Conectado a MongoDB'); // Conexión exitosa
 });
 
+/*
 
-const usersModel = require('./schemas').UsersModel;
 
 const BlogModel = require('./schemas').BlogModel;
 
@@ -64,23 +65,28 @@ Dato.save()
     });
 
 
+*/
 
 app.use(cors());
 app.use(router);
-app.use(express.json());
 
 app.use(express.static(path.join(__dirname, 'view')));
 app.use(express.static(path.join(__dirname, 'javascript')));
 
-app.get('/javascript/utils.js', (req, res) => {
+app.get('/javascript/sidebar.js', (req, res) => {
     res.set('Content-Type', 'application/javascript');
-    res.sendFile(path.join(__dirname, 'javascript', 'utils.js'));
+    res.sendFile(path.join(__dirname, 'javascript', 'sidebar.js'));
 });
 
 
 app.get('/javascript/ajax-handler.js', (req, res) => {
     res.set('Content-Type', 'application/javascript');
     res.sendFile(path.join(__dirname, 'javascript', 'ajax-handler.js'));
+});
+
+app.get('/javascript/user.js', (req, res) => {
+    res.set('Content-Type', 'application/javascript');
+    res.sendFile(path.join(__dirname, 'javascript', 'user.js'));
 });
 
 app.get('/', (req, res) => {
@@ -102,3 +108,5 @@ app.get('/create-post', (req, res) => {
 app.listen(port, () => {
     console.log(`Servidor corriendo en el puerto ${port}`);
 });
+
+

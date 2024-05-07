@@ -8,6 +8,7 @@ const adminPostRouter = require('./../routes/admin_post');
 
 //router.use(userLogIn);
 
+const usersModel = require('./../schemas').UsersModel;
 router.use('/posts',postRouter);
 router.use('/admin/posts',userLogIn, adminPostRouter);
 
@@ -24,4 +25,26 @@ function userLogIn(req,res,next)
         next();
     }
 }  
+
+
+router.post('/users', async (req, res) => 
+    {
+        try
+        {
+           const {id, name, mail, imageUrl, followers, follows, birthDate, contact1, contact2} = req.body;
+           const user = new usersModel({id, name, mail, imageUrl, followers, follows, birthDate, contact1, contact2});
+            user.save();
+            res.status(200).json({ message: "Usuario creado", userId: user.id });
+        }
+        catch(error)
+        {
+            res.status(500).send("Error");
+        }
+    });
+
+
+
+
+
+
 module.exports = router;

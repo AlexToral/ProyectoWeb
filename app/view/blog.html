@@ -92,22 +92,22 @@
             <div class="modal-body bg-registro-body">
                 <form>
                     <div class="form-group">
-                        <label for="nombre">Nombre</label>
+                        <label for="nombre1">Nombre</label>
                         <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre">
                     </div>
                     <div class="form-group">
-                        <label for="correoRegistro">Correo</label>
+                        <label for="correoRegistro1">Correo</label>
                         <input type="email" class="form-control" id="correoRegistro" placeholder="Ingresa tu correo electrónico">
                     </div>
                     <div class="form-group">
-                        <label for="contraseñaRegistro">Contraseña</label>
+                        <label for="contrasenaRegistro">Contraseña</label>
                         <input type="password" class="form-control" id="contraseñaRegistro" placeholder="Ingresa tu contraseña">
                     </div>
                     <div class="form-group">
-                        <label for="confirmarContraseña">Confirmar Contraseña</label>
+                        <label for="confirmarContrasena">Confirmar Contraseña</label>
                         <input type="password" class="form-control" id="confirmarContraseña" placeholder="Confirma tu contraseña">
                     </div>
-                    <button type="submit" class="btn btn-success btn-block" onclick="createUser()">Registrarse</button>
+                    <button type="submit" class="btn btn-success btn-block" id="botonRegistrarse">Registrarse</button>
                 </form>
             </div>
         </div>
@@ -219,7 +219,8 @@
     </nav>
   </div> <!--Page Navigation-->
   <!-- Optional JavaScript -->
-  <script src="./../javascript/utils.js"></script>
+  <script src="./../javascript/sidebar.js"></script>
+  <script src="./../javascript/user.js"></script>
   <script src="./../javascript/ajax-handler.js"></script>
  
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

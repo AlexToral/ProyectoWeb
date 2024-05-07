@@ -185,8 +185,53 @@ class User //id, name, mail, imageUrl, followers, follows, birthDate, contact1, 
 
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const createUserButton = document.getElementById('botonRegistrarse');
+    createUserButton.addEventListener('click', async function(event) {
+        event.preventDefault();
+        
+        var name = document.getElementById('nombre').value;
+        var mail = document.getElementById('correoRegistro').value;
+        
+        if (document.getElementById('contraseñaRegistro').value != document.getElementById('confirmarContraseña').value) {
+            alert("Las contraseñas no coinciden");
+            return;
+        }
+        
+        var password = document.getElementById('contraseñaRegistro').value;
+        
+        // Crear un objeto JavaScript directamente con los datos del usuario
+        var newUser = { name: name, mail: mail, password: password };        
+        try {
+            console.log('Creando nuevo usuario...');
+            const response = await fetch('/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newUser)
+        
+            });
+            console.log('Se creo el usuario');
+            
+            if(response.ok) {
+                const newUserResponse = await response.json();
+                var modal = document.getElementById('registro');
+                modal.classList.remove('show');
+                modal.setAttribute('aria-hidden', 'true');
+                modal.setAttribute('style', 'display: none');
+                document.getElementsByClassName('modal-backdrop')[0].remove();
+                document.body.classList.remove('modal-open');
+                
+            } else if(!response.ok) {
+                const errorMessage = await response.text();
+                console.error("Error al crear el usuario else if: ", errorMessage);
+            }
+        } catch(error) {
+            console.error("Error al crear el usuario: ", error);
+        }
+    });
+});
 
 
 
-module.exports = User;
-module.exports = UserException;
