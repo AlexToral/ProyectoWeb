@@ -4,6 +4,8 @@ const express = require('express');
 const router = express.Router();
 const postRouter = require('../routes/post_routes');
 const adminPostRouter = require('./../routes/admin_post');
+const bcrypt = require('bcrypt');
+const saltRounds = 15; // Número de rondas de hashing
 
 
 //router.use(userLogIn);
@@ -27,27 +29,35 @@ function userLogIn(req,res,next)
 }  
 
 
-router.post('/users', async (req, res) => 
-    {
-        try
-        {
-           const {id, name, mail, imageUrl, followers, follows, birthDate, contact1, contact2} = req.body;
-           const checkname = await usersModel.findOne({name: name});
-           if(checkname)
-           {
-               res.status(400).send("Error, el nombre de usuario ya existe");
-           }
-           else{
-           const user = new usersModel({name, mail, imageUrl, followers, follows, birthDate, contact1, contact2});
-            user.save();
-            res.status(200).json({ message: "Usuario creado", userId: user.id });
-           }
+router.post('/users', async (req, res) => {
+    try {
+        const { name, mail, password, imageUrl, followers, follows, birthDate, contact1, contact2 } = req.body;
+        const checkName = await usersModel.findOne({ name: name });
+        const checkMail = await usersModel.findOne({mail:mail});
+        
+        if (checkName) {
+            return res.status(400).send("Error, el nombre de usuario ya existe");
         }
-        catch(error)
-        {
-            res.status(500).send("Error");
+        else if (checkMail){
+            return res.status(400).send("Error, la direccion de correo ya esta registrada");
         }
-    });
+
+        // Generar el hash de la contraseña
+        const hash = await bcrypt.hash(password, saltRounds);
+
+        // Crear un nuevo usuario con el hash de la contraseña
+        const user = new usersModel({ name, mail, password: hash, imageUrl, followers, follows, birthDate, contact1, contact2 });
+
+        // Guardar el usuario en la base de datos
+        await user.save();
+
+        res.status(200).json({ message: "Usuario creado", userId: user.id });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error");
+    }
+});
+
 
 
 
