@@ -131,4 +131,4 @@ dist
 
 
 #mongoose credentials
-
+config.env
