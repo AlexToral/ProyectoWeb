@@ -131,4 +131,6 @@ dist
 
 
 #mongoose credentials
+.config.js
+config.js
 config.js
