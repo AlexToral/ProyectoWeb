@@ -88,6 +88,10 @@ app.get('/javascript/user.js', (req, res) => {
     res.set('Content-Type', 'application/javascript');
     res.sendFile(path.join(__dirname, 'javascript', 'user.js'));
 });
+app.get('/javascript/post.js', (req, res) => {
+    res.set('Content-Type', 'application/javascript');
+    res.sendFile(path.join(__dirname, 'javascript', 'post.js'));
+});
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'view', 'home.html'));

@@ -12,7 +12,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     createPostLink.addEventListener('click', function(event) {
         event.preventDefault(); // Detiene el comportamiento predeterminado del enlace
-
+        if(!localStorage.getItem('token'))
+        {
+            alert('Debes iniciar sesion para poder crear un post');
+            $('#Login').modal('show');
+            return;
+        }
         // Realizar una solicitud AJAX para cargar la página
         fetch('/create-post')
             .then(response => {
@@ -101,7 +106,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     profileLink.addEventListener('click', function(event) {
         event.preventDefault(); // Detiene el comportamiento predeterminado del enlace
-
+        if(!localStorage.getItem('token'))
+            {
+                alert('Debes iniciar sesion para poder ver tu perfil');
+                $('#Login').modal('show');
+                return;
+            }
         // Realizar una solicitud AJAX para cargar la página
         fetch('/profile')
             .then(response => {

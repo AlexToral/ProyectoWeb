@@ -144,3 +144,57 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
         this._category = value;
     }
 }
+
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const acceptCreatePost= document.getElementById('CreateAccept');
+        acceptCreatePost.addEventListener('click', async function(event) 
+        {
+            event.preventDefault();
+            var title =document.getElementById('CreateTitle').value;
+            var content =document.getElementById('CreateText').value;
+            var image = document.getElementById('CreateImage').value;
+            var userid= localStorage.getItem('token');
+
+            var newPost = {title: title, description: " ", content: content, imageUrl: image, author: userid, likes: 0, comments: 0, category: " "};
+            try{
+                const response = await fetch('/post-create', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('token')
+            },
+            body: JSON.stringify(newPost)
+            });
+            if (response.ok) {
+                const newPostResponse = await response.json();
+                fetch('/posts')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(html => {
+                // Insertar el HTML de la página en el cuerpo del documento
+                document.body.innerHTML = html;
+                history.pushState(null, '', '/home');
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error('Error fetching page:', error);
+            });
+            }
+            else if(!response.ok) {
+                const errorMessage = await response.text();
+                console.error("Error al crear el post: ", errorMessage);
+            }
+        }
+
+            catch(e)
+            {
+                alert(e.errorMessage);
+            }
+        });
+});

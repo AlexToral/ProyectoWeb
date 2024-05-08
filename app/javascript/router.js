@@ -11,22 +11,27 @@ const jwt = require('jsonwebtoken');
 //router.use(userLogIn);
 
 const usersModel = require('./../schemas').UsersModel;
+const postModel = require('./../schemas').BlogModel;
 router.use('/posts',postRouter);
 router.use('/admin/posts',userLogIn, adminPostRouter);
 
 function userLogIn(req,res,next)
 {
-    
-    let adminToken = req.get('x-auth');
-    if(adminToken === undefined || adminToken!="admin")
+    const token = req.headers.authorization;
+    if(!token)
     {
-        res.status(403).send("Acceso no autorizado, no se cuenta con privilegios de administrador");
+        return res.status(401).json({message: "No has iniciado sesion"});
     }
-    else
-    {
+    jwt.verify(token, 'candado', (error, decoded) => {
+        if(error)
+        {
+            return res.status(401).json({message: "No autorizado"});
+        }
+        req.userId = decoded.userId;
         next();
-    }
-}  
+    });
+
+}
 
 
 router.post('/login', async (req, res) => {
@@ -83,6 +88,28 @@ router.post('/users', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).send("Error");
+    }
+});
+
+
+router.post('/post-create', async (req, res) => {
+    try
+    {
+        jwt.verify(token, 'candado', (error, decoded) => {
+            if(error)
+            {
+                return res.status(401).json({message: "No autorizado"});
+            }
+            req.userId = decoded.userId;
+        });
+        const { title, description, content, imageUrl, author, likes, comments, category } = req.body;
+        const newPost = new postModel({ title, description, content, imageUrl, author, likes, comments, category });
+        await newPost.save();
+        res.status(200).json({ message: "Post creado", postId: newPost.id });
+    }
+    catch(error)
+    {
+        console.error(error);
     }
 });
 
