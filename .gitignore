@@ -132,3 +132,4 @@ dist
 
 #mongoose credentials
 config.env
+config.js

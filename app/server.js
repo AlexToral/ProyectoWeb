@@ -3,6 +3,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+require('dotenv').config();
 const mongoose = require('mongoose'); // Importar mongoose
 
 const app = express();
@@ -11,9 +12,8 @@ app.use(express.json());
 const router = require('././javascript/router');
 
 // Conexión a MongoDB con autenticación, utilizando las credenciales desde la configuración
-const config = require('./../config');
-const username = config.mongodb.username;
-const password = config.mongodb.password;
+const username = process.env.DB_USER;
+const password = process.env.DB_PASSWORD;
 
 // Conectar a MongoDB con credenciales
 mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.0linyln.mongodb.net/Projecto`, {
