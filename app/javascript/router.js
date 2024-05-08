@@ -95,7 +95,8 @@ router.post('/users', async (req, res) => {
 router.post('/post-create', async (req, res) => {
     try
     {
-        jwt.verify(token, 'candado', (error, decoded) => {
+        console.log("author:" ,req.body.author);
+        jwt.verify(req.body.author, 'candado', (error, decoded) => {
             if(error)
             {
                 return res.status(401).json({message: "No autorizado"});
