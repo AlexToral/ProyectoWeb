@@ -131,10 +131,6 @@
             <br>
             <input placeholder="Nombre" id="nameInp">
             <br>
-            <label for="Apellido">Apellido</label>
-            <br>
-            <input placeholder="Apellido" id="lastNameInp">
-            <br>
             <label for="Email">Email</label>
             <br>
             <input placeholder="Email" id="emailInp">
@@ -147,7 +143,7 @@
           <div class="OthersDatos col-md-5">
             <label for="FotoPerfil">Foto de Perfil</label>
             <br>
-            <input type="file" id="profilePicture">
+            <input id="profilePicture">
             <br>
             <br>
             <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" style="height: 128px; width:128px;" id="previewProfilePic">
@@ -161,8 +157,8 @@
             <input type="tel" id="contact2">
             <br>
             <br>
-            <button type="button" class="btn btn-info"><i class="fa fa-pen" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-danger">Cancelar</button>
+            <button type="button" class="btn btn-info" onclick="edit()" id="edit"><i class="fa fa-pen" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-danger" onclick="cancel()" id="cancel">Cancelar</button>
             <button type="button" class="btn btn-success" id="ConfirmChanges">Confirmar</button>
           </div>
           
@@ -210,7 +206,7 @@
   <!--CONTENIDO--> 
 
   <!-- Optional JavaScript -->
-  <script type="module" src="./../javascript/sidebar.js"></script>
+  <script src="./../javascript/sidebar.js"></script>
   <script src="./../javascript/user.js"></script>
   <script src="./../javascript/ajax-handler.js"></script>
   <script src="./../javascript/profile.js"></script>

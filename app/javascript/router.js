@@ -96,7 +96,7 @@ router.get('/users/:id', async (req, res) => {
 
 router.put('/users', async (req, res) => {
     try {
-        const { prevname, name, mail,imageUrl, birthDate, contact1, contact2 } = req.body;
+        const {id,name, mail,imageUrl, birthDate, contact1, contact2 } = req.body;
         const newData = {
             name: name,
             mail: mail,
@@ -112,7 +112,7 @@ router.put('/users', async (req, res) => {
 
 
         // Buscar y actualizar el usuario por su nombre previo
-        const usuarioActualizado = await usersModel.findOneAndUpdate({ name: prevname }, newData, { new: true });
+        const usuarioActualizado = await usersModel.findByIdAndUpdate(id, newData);
 
         if (!usuarioActualizado) {
             console.log("No se encontró el usuario.");
@@ -166,6 +166,7 @@ router.get('/user-info', async (req, res) => {
            const userInf = await usersModel.findById(req.userId);
            const userInfo = 
            {
+                id:userInf._id,
                 name: userInf.name,
                 mail: userInf.mail,
                 imageUrl: userInf.imageUrl,

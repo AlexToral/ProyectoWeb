@@ -269,74 +269,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
 });
 
-document.addEventListener('DOMContentLoaded', async function () {
-    const submitChanges = document.getElementById('ConfirmChanges');
-    submitChanges.addEventListener('click', async function (event) {
-        event.preventDefault();
 
-        let userName = document.getElementById('nameEdit').value;
-        let userMail = document.getElementById('emailEdit').value;
-        let userDate = document.getElementById('dateEdit').value;
-        let userImage = document.getElementById('fotoperfilEdit').value;
-        let userContact1 = document.getElementById('contacto1Edit').value;
-        let userContact2 = document.getElementById('contacto2Edit').value;
-        let GreetingsUser = document.getElementById("GreetingsUser").textContent;
-        let prevname = GreetingsUser.split(" ");
-
-        let updateUser = {
-            prevname: prevname[1],
-            name: userName,
-            mail:userMail,
-            birthDate:userDate,
-            imageUrl:userImage,
-            contact1:userContact1,
-            contact2:userContact2
-        };
-
-        for (let key in updateUser) {
-            if (updateUser.hasOwnProperty(key) && !updateUser[key]) {
-                try {
-                    const response = await fetch(`/users/663c589b5681c619635d9f2e`);
-                    if (!response.ok) {
-                        throw new Error('Error al obtener datos del usuario');
-                    }
-                    const userData = await response.json();
-                    const value = userData[key];
-                    console.log(key, "Falta", value);
-                    updateUser[key] = value;
-                } catch (error) {
-                    console.error("Error al obtener datos del usuario:", error);
-                }
-            }
-        }
-        console.log(updateUser);
-
-        try {
-            console.log("Actualizando Datos...");
-            const response = await fetch ('/users', 
-            {
-                method: 'PUT',
-                headers: 
-                {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(updateUser)
-            });
-            if (!response.ok) {
-                const errorMessage = await response.text();
-                console.error("Error al actualizar el Usuario: ", errorMessage);
-            } else {
-                const previewImage = document.getElementById("previewProfilePic");
-                const response = await fetch('/users/663c589b5681c619635d9f2e');
-                const data = await response.json();
-                previewImage.src = data.imageUrl;
-
-            }
-        } catch (error) {
-            console.error("Error al actualizar Usuario", error);
-        }
-    });
-});
 
 
 

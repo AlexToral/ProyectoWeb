@@ -136,6 +136,14 @@ hr{
     background-color: #acfaff;
 }
 
+#cancel{
+    display: none;
+}
+
+#ConfirmChanges{
+    display: none;
+}
+
 
 #number_of_likes{
     margin-left: 10px;
