@@ -124,41 +124,41 @@
     <div class="row">
 
       <div class="col-md-9 container" id="Main_Content">
-        <H1 class="text-center">HOLA USUARIO</H1>
+        <H1 class="text-center" id="userGreeting">HOLA USUARIO</H1>
         <div class="row">
           <div class="personal_Data col-md-7">
             <label for="Nombre">Nombre</label>
             <br>
-            <input placeholder="Nombre">
+            <input placeholder="Nombre" id="nameInp">
             <br>
             <label for="Apellido">Apellido</label>
             <br>
-            <input placeholder="Apellido">
+            <input placeholder="Apellido" id="lastNameInp">
             <br>
             <label for="Email">Email</label>
             <br>
-            <input placeholder="Email">
+            <input placeholder="Email" id="emailInp">
             <br>
             <label for="Fecha">Fecha de Nacimiento</label>
             <br>
-            <input type="date">
+            <input type="date" id="datInp">
             <br>
           </div>
           <div class="OthersDatos col-md-5">
             <label for="FotoPerfil">Foto de Perfil</label>
             <br>
-            <input type="file">
+            <input type="file" id="profilePicture">
             <br>
             <br>
             <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" style="height: 128px; width:128px;">
             <br>
             <label for="Contacto 1">Contacto 1</label>
             <br>
-            <input type="tel">
+            <input type="tel" id="contact1">
             <br>
             <label for="Contacto 2">Contacto 2</label>
             <br>
-            <input type="tel">
+            <input type="tel" id="contact2">
             <br>
             <br>
             <button type="button" class="btn btn-info"><i class="fa fa-pen" aria-hidden="true"></i></button>
@@ -213,6 +213,7 @@
   <script type="module" src="./../javascript/sidebar.js"></script>
   <script src="./../javascript/user.js"></script>
   <script src="./../javascript/ajax-handler.js"></script>
+  <script src="./../javascript/profile.js"></script>
 
 
 

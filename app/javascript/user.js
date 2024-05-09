@@ -188,6 +188,7 @@ class User //id, name, mail, imageUrl, followers, follows, birthDate, contact1, 
 document.addEventListener('DOMContentLoaded', function() {
     const createUserButton = document.getElementById('botonRegistrarse');
     const loginUserButton = document.getElementById('loginButton');
+
     createUserButton.addEventListener('click', async function(event) {
         event.preventDefault();
         

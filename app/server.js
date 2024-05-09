@@ -93,6 +93,11 @@ app.get('/javascript/post.js', (req, res) => {
     res.sendFile(path.join(__dirname, 'javascript', 'post.js'));
 });
 
+app.get('/javascript/profile.js', (req, res) => {
+    res.set('Content-Type', 'application/javascript');
+    res.sendFile(path.join(__dirname, 'javascript', 'profile.js'));
+});
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'view', 'home.html'));
 });
@@ -100,7 +105,7 @@ app.get('/home', (req, res) => {
     res.sendFile(path.join(__dirname, 'view', 'home.html'));
 });
 
-app.get('/profile', (req, res) => {
+app.get('/profile', async(req, res) => {
     res.sendFile(path.join(__dirname, 'view', 'personal_data.html'));
 });
 
