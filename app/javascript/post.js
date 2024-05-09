@@ -163,7 +163,7 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + localStorage.getItem('token')
+                        'Authorization': localStorage.getItem('token')
             },
             body: JSON.stringify(newPost)
             });
