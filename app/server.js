@@ -5,6 +5,7 @@ const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose'); // Importar mongoose
 
+
 const app = express();
 const port = 3000;
 app.use(express.json());
@@ -27,45 +28,25 @@ db.once('open', () => {
     console.log('Conectado a MongoDB'); // Conexión exitosa
 });
 
-/*
+const UsersModel = require("./schemas").UsersModel;
+
+// const newUser = new UsersModel({
+//     name: 'Nombre de usuario',
+//     mail: 'correo@ejemplo.com',
+//     password: 'contraseña',
+//     imageUrl: imageBuffer, // Asigna el buffer de la imagen
+//     followers: [],
+//     follows: [],
+//     birthDate: new Date(),
+//     contact1: 'contacto1',
+//     contact2: 'contacto2'
+// });
+// newUser.save();
+
+// Encuentra el usuario por el nombre
 
 
-const BlogModel = require('./schemas').BlogModel;
 
-const CommentModel = require('./schemas').CommentModel;
-
-
-BlogModel.find({})
-  .then(docs => {
-    console.log('Documentos en la colección Projecto:', docs);
-  })
-  .catch(err => {
-    console.error('Error al consultar documentos:', err);
-  });
-
-  
-const Dato = new BlogModel({
-    title: "TITULO 1",
-    description: "UNA DESCRIPCION MUY LATRHA",
-    content: "LOREMLOREMLOREMLOREMLOREMLOREMLOREM",
-    imageUrl: "STRING.HTML",
-    author: "MARY SUE",
-    likes: 1,
-    comments: 999,
-    category: "SALUD MENTAL",
-    id: 2
-});
-
-Dato.save()
-    .then(()=> {
-        console.log("Se guardo El usuario");
-    })
-    .catch(error => {
-        console.error("No se guardo ", error);
-    });
-
-
-*/
 
 app.use(cors());
 app.use(router);

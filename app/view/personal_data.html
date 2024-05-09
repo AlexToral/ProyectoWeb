@@ -124,46 +124,43 @@
     <div class="row">
 
       <div class="col-md-9 container" id="Main_Content">
-        <H1 class="text-center">HOLA USUARIO</H1>
+        <H1 class="text-center" id="GreetingsUser">HOLA USUARIO</H1>
         <div class="row">
           <div class="personal_Data col-md-7">
             <label for="Nombre">Nombre</label>
             <br>
-            <input placeholder="Nombre">
+            <input placeholder="Nombre" id="nameEdit">
             <br>
-            <label for="Apellido">Apellido</label>
-            <br>
-            <input placeholder="Apellido">
             <br>
             <label for="Email">Email</label>
             <br>
-            <input placeholder="Email">
+            <input placeholder="Email" id="emailEdit">
             <br>
             <label for="Fecha">Fecha de Nacimiento</label>
             <br>
-            <input type="date">
+            <input type="date" id="dateEdit">
             <br>
           </div>
           <div class="OthersDatos col-md-5">
             <label for="FotoPerfil">Foto de Perfil</label>
             <br>
-            <input type="file">
+            <input id="fotoperfilEdit">
             <br>
             <br>
-            <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" style="height: 128px; width:128px;">
+            <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" style="height: 128px; width:128px;" id="previewProfilePic">
             <br>
             <label for="Contacto 1">Contacto 1</label>
             <br>
-            <input type="tel">
+            <input type="tel" id="contacto1Edit">
             <br>
             <label for="Contacto 2">Contacto 2</label>
             <br>
-            <input type="tel">
+            <input type="tel" id="contacto2Edit">
             <br>
             <br>
             <button type="button" class="btn btn-info"><i class="fa fa-pen" aria-hidden="true"></i></button>
             <button type="button" class="btn btn-danger">Cancelar</button>
-            <button type="button" class="btn btn-success">Confirmar</button>
+            <button type="button" class="btn btn-success" id="ConfirmChanges">Confirmar</button>
           </div>
           
         </div>

@@ -91,6 +91,55 @@ router.post('/users', async (req, res) => {
     }
 });
 
+router.get('/users/:id', async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const user = await usersModel.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+
+        res.json(user);
+    } catch (error) {
+        console.error('Error al obtener datos del usuario:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+});
+
+router.put('/users', async (req, res) => {
+    try {
+        const { prevname, name, mail,imageUrl, birthDate, contact1, contact2 } = req.body;
+        const newData = {
+            name: name,
+            mail: mail,
+            imageUrl: imageUrl,
+            birthDate: birthDate,
+            contact1: contact1,
+            contact2: contact2
+        };
+
+        if(req.file){
+            newData.imageUrl = req.file.path;
+        }
+
+
+        // Buscar y actualizar el usuario por su nombre previo
+        const usuarioActualizado = await usersModel.findOneAndUpdate({ name: prevname }, newData, { new: true });
+
+        if (!usuarioActualizado) {
+            console.log("No se encontró el usuario.");
+            return res.status(404).send("No se encontró el usuario.");
+        }
+
+        console.log("Usuario Actualizado:", usuarioActualizado);
+        res.send("Usuario Actualizado");
+    } catch (error) {
+        console.error("Error al actualizar usuario:", error);
+        res.status(500).send("Error al actualizar usuario");
+    }
+});
+
 
 router.post('/post-create', async (req, res) => {
     try
