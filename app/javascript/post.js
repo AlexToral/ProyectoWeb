@@ -147,8 +147,33 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
 
 
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', async function() {
         const acceptCreatePost= document.getElementById('CreateAccept');
+        const left = document.getElementById('left');
+        try
+        {
+            const posts = await fetch ('/display-posts', {
+                method: 'GET',
+            headers:{
+                'Content-Type': 'application/json'},
+            });
+            if(posts.ok)
+                {
+                    const postsResponse = await posts.json();
+                    console.log(postsResponse);
+                     left.innerHTML = `<div class="whitespace"></div>\n` + postsResponse.map(postToHTML).join('');
+                    
+                }
+            else if(!posts.ok)
+            {
+                const errorMessage = await posts.text();
+                console.error("Error al cargar los posts: ", errorMessage);
+            }
+        }
+        catch(e)
+        {
+            alert(e.errorMessage);
+        }
         acceptCreatePost.addEventListener('click', async function(event) 
         {
             event.preventDefault();
@@ -198,3 +223,17 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
             }
         });
 });
+function postToHTML(post)
+{
+    return `<div class="cardBody col-md-12">
+    <div class="row">
+    <input type="hidden" id="postId" value="${post._id}">
+      <img class="card-img" src="${post.imageUrl}">
+      <h3 class="cardTitle">${post.title}</h3>
+      <p class="cardText">${post.description}</p>
+    </div>
+  </div>
+  <div class="whitespace"></div>
+    `;
+}
+

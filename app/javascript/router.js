@@ -184,6 +184,18 @@ router.get('/user-info', async (req, res) => {
     }
 });
 
+router.get('/display-posts', async (req, res) => {
+    try 
+    {
+        const posts = await postModel.find();
+        console.log(posts);
+        res.json(posts);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error interno del servidor" });
+    }
+});
+
 
 router.post('/comment',async (req, res) => {
     const { author, postIn, content} = req.body;
