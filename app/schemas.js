@@ -21,7 +21,7 @@ const BlogSchema = new mongoose.Schema({
     title: String,
     description: String,
     content: String,
-    imageUrl: Buffer,
+    imageUrl: String,
     author: String,
     likes: { type: Number, default: 0 },
     comments: { type: Number, default: 0 },

@@ -59,6 +59,10 @@ app.get('/javascript/sidebar.js', (req, res) => {
     res.sendFile(path.join(__dirname, 'javascript', 'sidebar.js'));
 });
 
+app.get('/javascript/post.js', (req, res) => {
+    res.set('Content-Type', 'application/javascript');
+    res.sendFile(path.join(__dirname, 'javascript', 'post.js'));
+});
 
 app.get('/javascript/ajax-handler.js', (req, res) => {
     res.set('Content-Type', 'application/javascript');
