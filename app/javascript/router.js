@@ -17,20 +17,7 @@ router.use('/admin/posts',userLogIn, adminPostRouter);
 
 function userLogIn(req,res,next)
 {
-    const token = req.headers.authorization;
-    if(!token)
-    {
-        return res.status(401).json({message: "No has iniciado sesion"});
-    }
-    jwt.verify(token, 'candado', (error, decoded) => {
-        if(error)
-        {
-            return res.status(401).json({message: "No autorizado"});
-        }
-        req.userId = decoded.userId;
-        next();
-    });
-
+    console.log(token);
 }
 
 
@@ -142,26 +129,64 @@ router.put('/users', async (req, res) => {
 
 
 router.post('/post-create', async (req, res) => {
-    try
-    {
-        console.log("author:" ,req.body.author);
+    try {
         jwt.verify(req.body.author, 'candado', (error, decoded) => {
-            if(error)
-            {
-                return res.status(401).json({message: "No autorizado"});
+            if (error) {
+                return res.status(401).json({ message: "No autorizado" });
             }
             req.userId = decoded.userId;
+
+            const { title, description, content, imageUrl, author, likes, comments, category } = req.body;
+            const newPost = new postModel({ title, description, content, imageUrl, author, likes, comments, category });
+            newPost.save()
+                .then(savedPost => {
+                    res.status(200).json({ message: "Post creado", postId: savedPost.id });
+                })
+                .catch(err => {
+                    console.error(err);
+                    res.status(500).json({ message: "Error interno del servidor" });
+                });
         });
-        const { title, description, content, imageUrl, author, likes, comments, category } = req.body;
-        const newPost = new postModel({ title, description, content, imageUrl, author, likes, comments, category });
-        await newPost.save();
-        res.status(200).json({ message: "Post creado", postId: newPost.id });
-    }
-    catch(error)
-    {
+    } catch (error) {
         console.error(error);
     }
 });
+
+
+router.get('/user-info', async (req, res) => {
+    try
+    {
+        jwt.verify(req.headers.authorization, 'candado', async(error, decoded) => 
+        {
+            if(error)
+                {
+                    return res.status(401).json({ message: "No autorizado" });
+                }
+            req.userId = decoded.userId;
+           const userInf = await usersModel.findById(req.userId);
+           const userInfo = 
+           {
+                name: userInf.name,
+                mail: userInf.mail,
+                imageUrl: userInf.imageUrl,
+                followers: userInf.followers,
+                follows: userInf.follows,
+                birthDate: userInf.birthDate,
+                contact1: userInf.contact1,
+                contact2: userInf.contact2
+            };
+            res.status(200).json(userInfo);
+           });
+        }
+
+    catch(error)
+    {
+        res.status(401).json({ message: "No autorizado" });
+    }
+});
+
+
+
 
 
 function generateToken(user) {
@@ -169,7 +194,7 @@ function generateToken(user) {
     {
         userId: user._id,
     };
-    const token = jwt.sign(payload, 'candado', { expiresIn: '1h' }); // Firma el token con una clave secreta y establece un tiempo de expiración
+    const token = jwt.sign(payload, 'candado', { expiresIn: '24h' }); // Firma el token con una clave secreta y establece un tiempo de expiración
     return token;
 }
 
