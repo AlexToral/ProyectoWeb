@@ -101,21 +101,13 @@ Content-Type: application/json
 ###
 GET http://localhost:3000/users/663c589b5681c619635d9f2e
 
-###
-POST http://localhost:3000/comment
-Content-Type: application/json
 
-{
-  "author": "Alex5",
-  "postIn":"6636e21c520b43ddebcbc91c",
-  "content": "JAJJAJA que buen blog. 10/10"
-}
 ###
 PUT http://localhost:3000/comment
 Content-Type: application/json
 
 {
-  "id":"663d20cae5f6bf4f1c1889f9",
+  "id":"663d81bac24ff8aa173dda0e",
   "content": "Esta es la actualizacion de mi comentario muy cool"
 }
 ###
@@ -129,3 +121,7 @@ Content-Type: application/json
 GET http://localhost:3000/post/6636e21c520b43ddebcbc91c
 ###
 GET http://localhost:3000/inside-post
+###
+GET http://localhost:3000/display-posts
+###
+GET http://localhost:3000/comment/663d69a85b8ca6e2aa2595ba

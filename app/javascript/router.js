@@ -211,6 +211,20 @@ router.get('/post/:id', async (req, res) => {
     }
 });
 
+router.get('/comment/:id',async(req,res)=> {
+    try{
+        const postId = req.params.id;
+        const commentsInpost = await commentModel.find({postIn:postId})
+
+        if(!commentsInpost){
+            return res.status(404).json({error:'No se encontraron comentarios del post '});
+        }
+        res.json(commentsInpost);
+    } catch (error){
+        console.error('Error al obtener datos del Post:', error);
+        res.status(400).json({ error: 'Error interno del servidor' }); 
+    }
+})
 
 router.post('/comment',async (req, res) => {
     const { author, postIn, content} = req.body;
@@ -237,7 +251,7 @@ router.put('/comment',async (req,res) => {
         if(!commentUpdated){
             return res.status(404).send("No se encontro el comentario a editar");
         }
-        return res.status(500).send("Se actualizo de manera correcta!");
+        return res.status(200).send("Se actualizo de manera correcta!");
 
     }catch(error){
         return res.status(404).send("No se pudo actualizar el comentario");
@@ -248,7 +262,7 @@ router.delete('/comment',async (req,res) => {
     const {id} = req.body;
     try{
         await commentModel.findByIdAndDelete(id);
-        return res.status(500).send("Se elimino el comentario");
+        return res.status(200).send("Se elimino el comentario");
     }catch(error){
         return res.status(400).send("No se pudo eliminar el comentario");
     }

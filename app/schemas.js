@@ -34,7 +34,6 @@ const BlogModel = mongoose.model("Blog", BlogSchema, "Blog");
 
 const CommentSchema = new mongoose.Schema({
     author: String,
-    imageUrl: String,
     postIn: { type: mongoose.Schema.Types.ObjectId, ref: 'Blog' },
     likes: { type: Number, default: 0 },
     content: String
