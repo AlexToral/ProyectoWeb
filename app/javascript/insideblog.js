@@ -1,6 +1,7 @@
 "use strict";
 
 let id;
+let imageUrl;
 
 function getSessionStorage()
 {
@@ -28,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         id = Userinfo.id;
     }
 
-    let postUrl = "posts/"+postId;
+    let postUrl = "/posts-preview/" + postId;
 
     const post = await fetch(postUrl);
     if(post.ok)
@@ -40,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
     const postData = await post.json();
     console.log("titulo",postData.title);
-    history.pushState(null, '', '/posts/'+createPostLink(postData.title));
+
     
 
     let Title = document.getElementById("tituloInside");
@@ -49,7 +50,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     let date = document.getElementById("date");
     let number_of_likes = document.getElementById("number_of_likes");
     let content = document.getElementById("content");
-    let userpostCommentPhoto = document.getElementById("userpostCommentPhoto");
+    let userpostCommentPhoto = document.getElementById("commentPhoto");
 
     const fecha = new Date(postData.date);
     const formatoNormal = fecha.toLocaleString();
@@ -67,6 +68,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 document.addEventListener('DOMContentLoaded', async function() {
     
     let commentsUrl = '/comment/'+postId;
+    console.log(commentsUrl);
 
     try {
         let response = await fetch(commentsUrl);
@@ -197,11 +199,13 @@ document.addEventListener('DOMContentLoaded', async function() {
 });
 
 document.addEventListener('DOMContentLoaded', async function () {
+
     const submitComment = document.getElementById("comentar");
     submitComment.addEventListener('click', async function (event) {
         let author = id;
         let postIn = getSessionStorage();
         let content = document.getElementById("commentContent").value;
+        
 
         let newComment = {
             author:author,
@@ -223,10 +227,16 @@ document.addEventListener('DOMContentLoaded', async function () {
                     const errorMessage = await response.text();
                     console.error("Error al subir el comentario: ", errorMessage);
                 }
+                console.log("Se subio el comentario...");
+            
         } catch (error){
             console.error("No se pudo subir tu comentario",error);
         }
-
+        document.getElementById("commentContent").value = "";
+    })
+    const cancelComment = document.getElementById("CancelarComment");
+    cancelComment.addEventListener('click', async function (event) {
+        document.getElementById("commentContent").value = "";
     })
 
 });
@@ -245,8 +255,8 @@ function commentToHTML(comment)
     <input type="hidden" id="commentId" value="${comment._id}">
     <div class="col-md-1"> <img class="user_comment_photo" src="${comment.imageUrl}"> </div>
     <div class="col-md-11"><span>${comment.name}</span>
-    <br>
-    <span id="content${comment._id}">${comment.content}</span><input type="text" style="visibility:hidden" id="editInput${comment._id}">
+    <br> 
+    <span id="content${comment._id}">${comment.content}</span><input class=" class="col-md-12 comentarioInput" "type="text" style="visibility:hidden" id="editInput${comment._id}">
     <div class="d-flex justify-content-end">
       <button class="btn-danger" id="deleteComment${comment._id}" style="border-radius: 20px; margin-right: 10px; visibility:hidden;"><i class="fa fa-trash" aria-hidden="true"></i></button> 
       <button class="btn-info" id="editComment${comment._id}" style="border-radius: 20px; visibility:${comment.display};"><i class="fa fa-pen" aria-hidden="true"></i></button> 
