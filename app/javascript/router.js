@@ -12,6 +12,7 @@ const jwt = require('jsonwebtoken');
 
 const usersModel = require('./../schemas').UsersModel;
 const postModel = require('./../schemas').BlogModel;
+const commentModel = require("./../schemas").CommentModel;
 router.use('/posts',postRouter);
 router.use('/admin/posts',userLogIn, adminPostRouter);
 
@@ -106,9 +107,6 @@ router.put('/users', async (req, res) => {
             contact2: contact2
         };
 
-        if(req.file){
-            newData.imageUrl = req.file.path;
-        }
 
 
         // Buscar y actualizar el usuario por su nombre previo
@@ -197,8 +195,64 @@ router.get('/display-posts', async (req, res) => {
     }
 });
 
+router.get('/post/:id', async (req, res) => {
+    try {
+        const postId = req.params.id;
+        const post = await postModel.findById(postId);
+
+        if (!post) {
+            return res.status(404).json({ error: 'Post no encontrado' });
+        }
+
+        res.json(post);
+    } catch (error) {
+        console.error('Error al obtener datos del Post:', error);
+        res.status(400).json({ error: 'Error interno del servidor' });
+    }
+});
 
 
+router.post('/comment',async (req, res) => {
+    const { author, postIn, content} = req.body;
+    try{
+        const postRecord = await postModel.findById(postIn);
+        console.log(postRecord)
+
+        const comment = new commentModel({author,postIn,content});
+        await comment.save();
+        res.status(200).json({message:"Comentario Posteado"});
+
+
+    }catch(error){
+        res.status(401).json({message: "Error al subir el comentario"});
+    }
+});
+
+router.put('/comment',async (req,res) => {
+    const {id,content} = req.body;
+    
+    try{
+        const newData = {content:content};
+        const commentUpdated = await commentModel.findByIdAndUpdate(id,newData);
+        if(!commentUpdated){
+            return res.status(404).send("No se encontro el comentario a editar");
+        }
+        return res.status(500).send("Se actualizo de manera correcta!");
+
+    }catch(error){
+        return res.status(404).send("No se pudo actualizar el comentario");
+    }
+})
+
+router.delete('/comment',async (req,res) => {
+    const {id} = req.body;
+    try{
+        await commentModel.findByIdAndDelete(id);
+        return res.status(500).send("Se elimino el comentario");
+    }catch(error){
+        return res.status(400).send("No se pudo eliminar el comentario");
+    }
+})
 
 
 function generateToken(user) {

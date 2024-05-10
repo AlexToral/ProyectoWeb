@@ -59,6 +59,11 @@ app.get('/javascript/sidebar.js', (req, res) => {
     res.sendFile(path.join(__dirname, 'javascript', 'sidebar.js'));
 });
 
+app.get('/javascript/insideblog.js', (req, res) => {
+    res.set('Content-Type', 'application/javascript');
+    res.sendFile(path.join(__dirname, 'javascript', 'insideblog.js'));
+});
+
 app.get('/javascript/post.js', (req, res) => {
     res.set('Content-Type', 'application/javascript');
     res.sendFile(path.join(__dirname, 'javascript', 'post.js'));
@@ -97,6 +102,10 @@ app.get('/profile', async(req, res) => {
 
 app.get('/create-post', (req, res) => {
     res.sendFile(path.join(__dirname, 'view', 'createblog.html'));
+});
+
+app.get('/inside-post', (req, res) => {
+    res.sendFile(path.join(__dirname, 'view', 'inside_blog.html'));
 });
 
 app.listen(port, () => {

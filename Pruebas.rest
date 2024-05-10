@@ -100,3 +100,32 @@ Content-Type: application/json
 }
 ###
 GET http://localhost:3000/users/663c589b5681c619635d9f2e
+
+###
+POST http://localhost:3000/comment
+Content-Type: application/json
+
+{
+  "author": "Alex5",
+  "postIn":"6636e21c520b43ddebcbc91c",
+  "content": "JAJJAJA que buen blog. 10/10"
+}
+###
+PUT http://localhost:3000/comment
+Content-Type: application/json
+
+{
+  "id":"663d20cae5f6bf4f1c1889f9",
+  "content": "Esta es la actualizacion de mi comentario muy cool"
+}
+###
+DELETE http://localhost:3000/comment
+Content-Type: application/json
+
+{
+  "id": "663d20cae5f6bf4f1c1889f9"
+}
+###
+GET http://localhost:3000/post/6636e21c520b43ddebcbc91c
+###
+GET http://localhost:3000/inside-post

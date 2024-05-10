@@ -148,8 +148,14 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
 }
 
 
+    function delSessionStorage(){
+        sessionStorage.removeItem("postId");
+    }
 
+    delSessionStorage();
+    
     document.addEventListener('DOMContentLoaded', async function() {
+        
         const acceptCreatePost= document.getElementById('CreateAccept');
         const pagination = document.getElementById('paginationContainer');
         const previous = document.getElementById('previous');
@@ -255,17 +261,53 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
             }
         });     
 });
+
+
+async function loadPreviewPosts(id){
+    const previewContainer = document.getElementById("Main_Content");
+    previewContainer.innerHTML = await previewPost(id);
+}
+
+function saveInsideblog(id){+
+    sessionStorage.setItem("postId",id);
+}
+
+async function previewPost(id){
+    console.log("Hola",id);
+    const postUrl = "/post/"+id;
+
+    let post = await fetch(postUrl);
+    let postData = await post.json();
+    const fecha = new Date(postData.date);
+    const formatoNormal = fecha.toLocaleString();
+
+    return `
+          <div class="whitespace"></div>
+          <div class="card text-left">
+          <img class="card-img-preview" src="${postData.imageUrl}">
+            <div class="card-body">
+            <a href ="inside_blog.html" id="insidepostlink" onclick="saveInsideblog('${id}')"><h4 class="card-title">${postData.title}</h4></a>
+              <p class="card-text">${postData.content}</p>
+              <p>AUTOR: Alex</p>
+              <p>FECHA: ${formatoNormal}</p>
+              <p>TEMAS: ${postData.category}</p>
+            </div>
+          </div>
+    `
+}
+
 function postToHTML(post)
 {
     return `<div class="cardBody col-md-12">
     <div class="row">
     <input type="hidden" id="postId" value="${post._id}">
-      <img class="card-img" src="${post.imageUrl}">
+    <button class="transparent_btn" onclick="loadPreviewPosts('${post._id}')"><img class="card-img" src="${post.imageUrl}"></button>
       <h3 class="cardTitle">${post.title}</h3>
       <p class="cardText">${post.description}</p>
-    </div>
+    </div> 
   </div>
   <div class="whitespace"></div>
-    `;
+    `
+    ;
 }
 

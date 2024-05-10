@@ -59,10 +59,6 @@ document.addEventListener('DOMContentLoaded', async function()
 });
 
 document.addEventListener('DOMContentLoaded', async function () {
-   
-    
-
-    
 
     const submitChanges = document.getElementById('ConfirmChanges');
     submitChanges.addEventListener('click', async function (event) {

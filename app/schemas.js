@@ -23,16 +23,18 @@ const BlogSchema = new mongoose.Schema({
     content: String,
     imageUrl: String,
     author: String,
+    readTime: String,
+    date: { type: Date, default: Date.now },
     likes: { type: Number, default: 0 },
     comments: { type: Number, default: 0 },
     category: String,
-    id: Number
 });
 
 const BlogModel = mongoose.model("Blog", BlogSchema, "Blog");
 
 const CommentSchema = new mongoose.Schema({
     author: String,
+    imageUrl: String,
     postIn: { type: mongoose.Schema.Types.ObjectId, ref: 'Blog' },
     likes: { type: Number, default: 0 },
     content: String

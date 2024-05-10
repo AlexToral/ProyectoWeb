@@ -75,6 +75,8 @@ class Comment //author, content, likes, postIn el postIn es el post en el que se
         this._postIn = value;
     }
 
+    
+
 }
 
 module.exports = Comment;
