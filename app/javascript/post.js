@@ -157,7 +157,12 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
     document.addEventListener('DOMContentLoaded', async function() {
         const acceptCreatePost= document.getElementById('CreateAccept');
         const pagination = document.getElementById('paginationContainer');
+        const previous = document.getElementById('previous');
         const left = document.getElementById('left');
+        const next = document.getElementById('next');
+
+    
+        console.log(next);
         try
         {
             const posts = await fetch ('/display-posts', {
@@ -182,6 +187,32 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
         {
             alert(e.errorMessage);
         }
+        previous.addEventListener('click',  function(event) 
+        {
+            console.log("previous?");
+            if(document.getElementById('page').value > 1)
+            {
+                history.pushState(null, '', '/posts?page=' + (parseInt(document.getElementById('page').value) - 1));
+                window.location.reload();                 }
+            else
+            {
+                alert('No hay más páginas');
+            }
+        });
+        next.addEventListener('click', function(event) 
+        {
+            console.log("next?");
+
+            if(document.getElementById('page').value < document.getElementById('totalPages').value)
+            {
+                history.pushState(null, '', '/posts?page=' + (parseInt(document.getElementById('page').value) + 1));
+                window.location.reload();     
+            }
+            else
+            {
+                alert('No hay más páginas');
+            }
+        });     
         if(acceptCreatePost === null)
         {
             console.log("No hay botón de crear post");
@@ -237,11 +268,6 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
         });
     }
     var preview = document.getElementById('Main_Content'); 
-    if(preview === null)
-        {
-            console.log("No hay botón de preview");
-        }
-        else{
         preview.addEventListener('click', async function(event) 
         {
             event.preventDefault();
@@ -251,7 +277,6 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
                 const response = await fetch ('/posts/'+postName);
                 if(response.ok)
                 {
-                    removeAllEventListeners(preview);
                     console.log("Post encontrado");
                     history.pushState(null, '', '/posts/'+createPostLink(postName));
                     window.location.reload();
@@ -262,7 +287,6 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
                     console.error("Error al obtener el post: ", errorMessage);
                 }
             });
-        }
         });
 
 
@@ -320,7 +344,3 @@ function createPostLink(postName) {
     return postName;
 }
 
-function removeAllEventListeners(element) {
-    var clone = element.cloneNode(true); // Clona el elemento para preservar sus propiedades
-    element.parentNode.replaceChild(clone, element); // Reemplaza el elemento original con su clon
-}

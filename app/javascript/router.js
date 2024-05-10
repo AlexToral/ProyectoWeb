@@ -128,19 +128,14 @@ router.put('/users', async (req, res) => {
 
 router.post('/post-create', async (req, res) => {
     try {
-
-        jwt.verify(req.body.author, 'candado',async (error, decoded) => {
+        jwt.verify(req.body.author, 'candado', (error, decoded) => {
             if (error) {
                 return res.status(401).json({ message: "No autorizado" });
             }
             req.userId = decoded.userId;
-            const user = await usersModel.findById(req.userId);
-            const userName = user.name;
-            console.log(userName);
-            const { title, description, content, imageUrl, likes, comments, category } = req.body;
-            const author = userName;
+
+            const { title, description, content, imageUrl, author, likes, comments, category } = req.body;
             const newPost = new postModel({ title, description, content, imageUrl, author, likes, comments, category });
-            console.log(newPost);
             newPost.save()
                 .then(savedPost => {
                     res.status(200).json({ message: "Post creado", postId: savedPost.id });
@@ -154,31 +149,6 @@ router.post('/post-create', async (req, res) => {
         console.error(error);
     }
 });
-
-router.put('/post-update', async (req, res) => {
-    try{
-        console.log(req.body);
-        const{ id,title,content} = req.body;
-        const newData = {title:title,content:content};
-        const postUpdated = await postModel.findByIdAndUpdate(id,newData);
-        if(!postUpdated){
-            return res.status(404).send("No se encontro el post a editar");
-        }
-        return res.status(200).send("Se actualizo de manera correcta!");
-    }
-    catch(error){
-        console.error(error);
-    }
-});
-router.delete('/post-delete',async (req,res) => {
-    const {id} = req.body;
-    try{
-        await postModel.findByIdAndDelete(id);
-        return res.status(200).send("Se elimino el comentario");
-    }catch(error){
-        return res.status(400).send("No se pudo eliminar el comentario");
-    }
-})
 
 
 router.get('/user-info', async (req, res) => {
@@ -204,7 +174,6 @@ router.get('/user-info', async (req, res) => {
                 contact1: userInf.contact1,
                 contact2: userInf.contact2
             };
-            console.log(userInfo);
             res.status(200).json(userInfo);
            });
         }
@@ -219,7 +188,6 @@ router.get('/display-posts', async (req, res) => {
     try 
     {
         const posts = await postModel.find();
-        console.log(posts);
         res.json(posts);
     } catch (error) {
         console.error(error);

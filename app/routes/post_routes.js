@@ -231,7 +231,6 @@ router.route('/')
       <script src="./../javascript/user.js"></script>
       <script src="./../javascript/ajax-handler.js"></script>
       <script src="./../javascript/post.js"></script>
-      <script src="./../javascript/pagination.js"></script>
      
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -304,7 +303,7 @@ router.route('/:id')
           <link rel="stylesheet" href="/view/style.css">
          </head> 
          <body>
-         <input type="hidden" id="postId" value="${post._id}">
+        
             <nav class="bgnav navbar navbar-expand-sm navbar-light"> <!--NAVBAR-->
               <a class="navbar-brand" href="home.html" id="home-link"><img src="https://th.bing.com/th/id/OIG2.mvAYZ_0sG8BPe5i4r0kB?w=1024&h=1024&rs=1&pid=ImgDetMain" style="height: 50px; width:50px"></a>
               <div class="flex-grow-1">
@@ -369,7 +368,7 @@ router.route('/:id')
             </div>
         </div>
           <!--Login MODAL-->
-        <input type="hidden" id="postAuthor" value="${post.author}">
+        
             <!--Registrarse MODAL-->
             <div class="modal fade" id="registro" tabindex="-1" role="dialog" aria-labelledby="registroTitle" aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -421,26 +420,11 @@ router.route('/:id')
                     </div>
                   </div>
                   <div class="whitespace"></div>
-                  <div class="inside-content d-flex justify-content-between align-items-center">
-            <span id="content" contenteditable="false">
-                ${post.content}
-            </span>
-            <div>
-              <button class="btn btn-danger" id="deleteButton" style="border-radius: 20px; margin-right: 10px;">
-                <i class="fa fa-trash" aria-hidden="true"></i>
-              </button> 
-              <button class="btn btn-info" id="editButton" style="border-radius: 20px;">
-                <i class="fa fa-pen" aria-hidden="true"></i>
-              </button>
-         
-    <button class="btn btn-danger" id="cancelButton" style="border-radius: 20px; margin-right: 10px; display: none;">
-        <i class="fas fa-times"></i> <!-- Icono de cruz -->
-    </button> 
-    <button class="btn btn-success" id="approveButton" style="border-radius: 20px; display: none;">
-        <i class="fas fa-check"></i> <!-- Icono de palomita -->
-    </button>
-</div>
-          </div>
+                  <div class="inside-content">
+                    <span id="content">
+                      ${post.content}  
+                    </span>
+                    </div>
         
                             <!--COMENTARIOS-->
                 
@@ -510,7 +494,6 @@ router.route('/:id')
           <script src="./../javascript/sidebar.js"></script>
           <script src="./../javascript/ajax-handler.js"></script>
           <script src="./../javascript/user.js"></script>
-          <script src="./../javascript/insideblog.js"></script>
 
           <!-- jQuery first, then Popper.js, then Bootstrap JS -->
           <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
