@@ -195,7 +195,7 @@ router.get('/display-posts', async (req, res) => {
     }
 });
 
-router.get('/post/:id', async (req, res) => {
+router.get('/posts-preview/:id', async (req, res) => {
     try {
         const postId = req.params.id;
         const post = await postModel.findById(postId);

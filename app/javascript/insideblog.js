@@ -2,7 +2,8 @@
 
 let id;
 
-function getSessionStorage(){
+function getSessionStorage()
+{
    let storedPost =  sessionStorage.getItem("postId");
    return storedPost;
 }
@@ -27,16 +28,19 @@ document.addEventListener('DOMContentLoaded', async function() {
         id = Userinfo.id;
     }
 
-    let postUrl = "post/"+postId;
+    let postUrl = "posts/"+postId;
 
     const post = await fetch(postUrl);
+    if(post.ok)
+    {
+
+    }
     if(!post.ok){
         throw new Error('Error al obtener el post');
     }
     const postData = await post.json();
-
-
-    
+    console.log("titulo",postData.title);
+    history.pushState(null, '', '/posts/'+createPostLink(postData.title));
     
 
     let Title = document.getElementById("tituloInside");
@@ -227,7 +231,11 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 });
 
-
+function createPostLink(postName) {
+    postName = postName.replace(/%20/g, ' ');
+    postName = postName.replace(/ /g, '-');
+    return postName;
+}
 
 function commentToHTML(comment)
 {
