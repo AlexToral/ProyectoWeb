@@ -72,6 +72,12 @@ app.get('/javascript/insideblog.js', (req, res) => {
 app.get('/javascript/post.js', (req, res) => {
     res.set('Content-Type', 'application/javascript');
     res.sendFile(path.join(__dirname, 'javascript', 'post.js'));
+
+    
+});
+app.get('/javascript/pagination.js', (req, res) => {
+    res.set('Content-Type', 'application/javascript');
+    res.sendFile(path.join(__dirname, 'javascript', 'pagination.js'));
 });
 
 app.get('/javascript/ajax-handler.js', (req, res) => {

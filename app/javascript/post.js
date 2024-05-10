@@ -268,6 +268,11 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
         });
     }
     var preview = document.getElementById('Main_Content'); 
+    if(preview === null)
+        {
+            console.log("No hay botón de preview");
+        }
+        else{
         preview.addEventListener('click', async function(event) 
         {
             event.preventDefault();
@@ -277,6 +282,7 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
                 const response = await fetch ('/posts/'+postName);
                 if(response.ok)
                 {
+                    removeAllEventListeners(preview);
                     console.log("Post encontrado");
                     history.pushState(null, '', '/posts/'+createPostLink(postName));
                     window.location.reload();
@@ -287,6 +293,7 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
                     console.error("Error al obtener el post: ", errorMessage);
                 }
             });
+        }
         });
 
 
@@ -342,5 +349,10 @@ function createPostLink(postName) {
     postName = postName.replace(/%20/g, ' ');
     postName = postName.replace(/ /g, '-');
     return postName;
+}
+
+function removeAllEventListeners(element) {
+    var clone = element.cloneNode(true); // Clona el elemento para preservar sus propiedades
+    element.parentNode.replaceChild(clone, element); // Reemplaza el elemento original con su clon
 }
 
