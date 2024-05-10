@@ -187,6 +187,40 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
         {
             alert(e.errorMessage);
         }
+        previous.addEventListener('click',  function(event) 
+        {
+            console.log("previous?");
+            if(document.getElementById('page').value > 1)
+            {
+                history.pushState(null, '', '/posts?page=' + (parseInt(document.getElementById('page').value) - 1));
+                window.location.reload();                 }
+            else
+            {
+                alert('No hay más páginas');
+            }
+        });
+        next.addEventListener('click', function(event) 
+        {
+            console.log("next?");
+
+            if(document.getElementById('page').value < document.getElementById('totalPages').value)
+            {
+                console.log("next?2 ");
+                console.log(document.getElementById('page').value);
+                history.pushState(null, '', '/posts?page=' + (parseInt(document.getElementById('page').value) + 1));
+                window.location.reload();     
+            }
+            else
+            {
+                alert('No hay más páginas');
+            }
+        });     
+        if(acceptCreatePost === null)
+        {
+            console.log("No hay botón de crear post");
+        }
+        else
+        {
         acceptCreatePost.addEventListener('click', async function(event) 
         {
             event.preventDefault();
@@ -229,37 +263,13 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
                 console.error("Error al crear el post: ", errorMessage);
             }
         }
-
             catch(e)
             {
                 alert(e.errorMessage);
             }
         });
-        previous.addEventListener('click',  function(event) 
-        {
-            console.log("previous?");
-            if(document.getElementById('page').value > 1)
-            {
-            fetch('/posts?page=' + (document.getElementById('page').value - 1));      
-            }
-            else
-            {
-                alert('No hay más páginas');
-            }
-        });
-        next.addEventListener('click', function(event) 
-        {
-            console.log("next?");
-
-            if(document.getElementById('page').value < document.getElementById('totalPages').value)
-            {
-                fetch('/posts?page=' + (document.getElementById('page').value + 1));       
-            }
-            else
-            {
-                alert('No hay más páginas');
-            }
-        });     
+    }
+       
 });
 
 
