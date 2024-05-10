@@ -452,10 +452,10 @@ router.route('/:id')
         
                       <div id="crearComentario"> <!--Caja para crear comentarios-->
                         <div class="row">
-                          <div class="col-md-1"> <img class="user_comment_photo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGzu3NaPLdn-EJx7iTK-s65246LPFfX3LGa_uPSYLCPg&s"> </div>
-                          <div class="col-md-11"><input class="col-md-12 comentarioInput" type="text" placeholder="Dejanos tu opinion..."> 
+                          <div class="col-md-1"> <img class="user_comment_photo" id="commentPhoto" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGzu3NaPLdn-EJx7iTK-s65246LPFfX3LGa_uPSYLCPg&s"> </div>
+                          <div class="col-md-11"><input class="col-md-12 comentarioInput" type="text" placeholder="Dejanos tu opinion..." id="commentContent"> 
                             <div class="d-flex justify-content-end">
-                              <button class="btn-trans">Comentar</button> <button class="btn-trans">Cancelar</button>
+                              <button class="btn-trans" id="comentar">Comentar</button> <button class="btn-trans" id="CancelarComment">Cancelar</button>
                             </div>
                           </div>
                         </div>
@@ -464,20 +464,6 @@ router.route('/:id')
         
                       <div class="whitespace"></div> <!--Caja de los comentarios en texto-->
                       <div id="ComentariosBox">
-                        <div class="row">
-                          <div class="col-md-1"> <img class="user_comment_photo" src="https://thispersondoesnotexist.com/"> </div>
-                          <div class="col-md-11"><span>User</span>
-                          <br>
-                          <span>Que buen blog, me rei mucho</span>
-                          <div class="d-flex justify-content-end">
-                            <button class="btn-danger" style="border-radius: 20px; margin-right: 10px;"><i class="fa fa-trash" aria-hidden="true"></i></button> 
-                            <button class="btn-info" style="border-radius: 20px;"><i class="fa fa-pen" aria-hidden="true"></i></button> 
-                            <button class="btn-trans">Confirmar</button> 
-                            <button class="btn-trans">Cancelar</button>
-                          </div>
-                          </div>
-                          
-                      </div>
                       <hr>
                     </div> <!--Caja de los comentarios en texto-->
                     
