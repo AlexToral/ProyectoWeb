@@ -1,4 +1,6 @@
 "use strict";
+let currentPage = 1;
+let postsPerPage = 4;
 class PostException {
     constructor(errorMessage){
         this.errorMessage = errorMessage;
@@ -149,7 +151,12 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
 
     document.addEventListener('DOMContentLoaded', async function() {
         const acceptCreatePost= document.getElementById('CreateAccept');
+        const pagination = document.getElementById('paginationContainer');
+        const previous = document.getElementById('previous');
         const left = document.getElementById('left');
+        const next = document.getElementById('next');
+        console.log(document.getElementById('page'));
+        console.log(next);
         try
         {
             const posts = await fetch ('/display-posts', {
@@ -160,8 +167,8 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
             if(posts.ok)
                 {
                     const postsResponse = await posts.json();
-                    console.log(postsResponse);
-                     left.innerHTML = `<div class="whitespace"></div>\n` + postsResponse.map(postToHTML).join('');
+                    const total = postsResponse.length;
+                    left.innerHTML = `<div class="whitespace"></div>\n${postsResponse.slice(document.getElementById('startIndex').value, document.getElementById('endIndex').value).map(postToHTML).join('')}`;
                     
                 }
             else if(!posts.ok)
@@ -222,6 +229,31 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
                 alert(e.errorMessage);
             }
         });
+        previous.addEventListener('click',  function(event) 
+        {
+            console.log("previous?");
+            if(document.getElementById('page').value > 1)
+            {
+            fetch('/posts?page=' + (document.getElementById('page').value - 1));      
+            }
+            else
+            {
+                alert('No hay más páginas');
+            }
+        });
+        next.addEventListener('click', function(event) 
+        {
+            console.log("next?");
+
+            if(document.getElementById('page').value < document.getElementById('totalPages').value)
+            {
+                fetch('/posts?page=' + (document.getElementById('page').value + 1));       
+            }
+            else
+            {
+                alert('No hay más páginas');
+            }
+        });     
 });
 function postToHTML(post)
 {
