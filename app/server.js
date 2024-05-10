@@ -59,6 +59,11 @@ app.get('/javascript/sidebar.js', (req, res) => {
     res.sendFile(path.join(__dirname, 'javascript', 'sidebar.js'));
 });
 
+app.get('/javascript/pagination.js', (req, res) => {
+    res.set('Content-Type', 'application/javascript');
+    res.sendFile(path.join(__dirname, 'javascript', 'pagination.js'));
+});
+
 app.get('/view/style.css', (req, res) => {
     res.set('Content-Type', 'text/css');
     res.sendFile(path.join(__dirname, 'view', 'style.css'));
