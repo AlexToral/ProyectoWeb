@@ -155,13 +155,13 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
     delSessionStorage();
     
     document.addEventListener('DOMContentLoaded', async function() {
-        
         const acceptCreatePost= document.getElementById('CreateAccept');
         const pagination = document.getElementById('paginationContainer');
         const previous = document.getElementById('previous');
         const left = document.getElementById('left');
         const next = document.getElementById('next');
-        console.log(document.getElementById('page'));
+
+    
         console.log(next);
         try
         {
@@ -205,8 +205,6 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
 
             if(document.getElementById('page').value < document.getElementById('totalPages').value)
             {
-                console.log("next?2 ");
-                console.log(document.getElementById('page').value);
                 history.pushState(null, '', '/posts?page=' + (parseInt(document.getElementById('page').value) + 1));
                 window.location.reload();     
             }
@@ -269,8 +267,27 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
             }
         });
     }
-       
-});
+    var preview = document.getElementById('Main_Content'); 
+        preview.addEventListener('click', async function(event) 
+        {
+            event.preventDefault();
+            console.log("preview?");
+            var postName = document.getElementById('postName').value;
+            console.log(postName);
+                const response = await fetch ('/posts/'+postName);
+                if(response.ok)
+                {
+                    console.log("Post encontrado");
+                    history.pushState(null, '', '/posts/'+createPostLink(postName));
+                    window.location.reload();
+                }
+                else if(!response.ok)
+                {
+                    const errorMessage = await response.text();
+                    console.error("Error al obtener el post: ", errorMessage);
+                }
+            });
+        });
 
 
 async function loadPreviewPosts(id){
@@ -278,27 +295,27 @@ async function loadPreviewPosts(id){
     previewContainer.innerHTML = await previewPost(id);
 }
 
-function saveInsideblog(id){+
+function saveInsideblog(id){
     sessionStorage.setItem("postId",id);
-}
+    }
 
 async function previewPost(id){
     console.log("Hola",id);
-    const postUrl = "/post/"+id;
-
+    const postUrl = "/posts-preview/"+id;
     let post = await fetch(postUrl);
     let postData = await post.json();
     const fecha = new Date(postData.date);
     const formatoNormal = fecha.toLocaleString();
 
     return `
+    <input type="hidden" id="postName" value="${postData.title}">
           <div class="whitespace"></div>
           <div class="card text-left">
           <img class="card-img-preview" src="${postData.imageUrl}">
             <div class="card-body">
-            <a href ="inside_blog.html" id="insidepostlink" onclick="saveInsideblog('${id}')"><h4 class="card-title">${postData.title}</h4></a>
+            <a href ="inside_blog.html" id="insidepostlink" onclick="saveInsideblog('${id}')"><h4 class="card-title tarjeta">${postData.title}</h4></a>
               <p class="card-text">${postData.content}</p>
-              <p>AUTOR: Alex</p>
+              <p>AUTOR: ${postData.author}</p>
               <p>FECHA: ${formatoNormal}</p>
               <p>TEMAS: ${postData.category}</p>
             </div>
@@ -319,5 +336,11 @@ function postToHTML(post)
   <div class="whitespace"></div>
     `
     ;
+}
+
+function createPostLink(postName) {
+    postName = postName.replace(/%20/g, ' ');
+    postName = postName.replace(/ /g, '-');
+    return postName;
 }
 
