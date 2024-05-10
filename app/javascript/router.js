@@ -196,6 +196,22 @@ router.get('/display-posts', async (req, res) => {
     }
 });
 
+router.get('/post/:id', async (req, res) => {
+    try {
+        const postId = req.params.id;
+        const post = await postModel.findById(postId);
+
+        if (!post) {
+            return res.status(404).json({ error: 'Post no encontrado' });
+        }
+
+        res.json(post);
+    } catch (error) {
+        console.error('Error al obtener datos del Post:', error);
+        res.status(400).json({ error: 'Error interno del servidor' });
+    }
+});
+
 
 router.post('/comment',async (req, res) => {
     const { author, postIn, content} = req.body;

@@ -83,6 +83,10 @@ hr{
     background-color: #dbf1f2;
 }
 
+.highlight{
+    background-color: red;
+}
+
 .cardTitle{
     margin-left:31vh;
     position:absolute;

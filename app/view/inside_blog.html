@@ -16,7 +16,7 @@
  <body>
 
     <nav class="bgnav navbar navbar-expand-sm navbar-light"> <!--NAVBAR-->
-      <a class="navbar-brand" href="home.html" id="home-link">LOGO</a>
+      <a class="navbar-brand" href="home.html" id="home-link"><img src="https://th.bing.com/th/id/OIG2.mvAYZ_0sG8BPe5i4r0kB?w=1024&h=1024&rs=1&pid=ImgDetMain" style="height: 50px; width:50px"></a>
       <div class="flex-grow-1">
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control col-lg-5" type="text" placeholder="Lorem Ipsum">
@@ -121,18 +121,18 @@
 
         <div class="col-md-9 container" id="Main_Content">
           <div class="header"> 
-            <h1 class="text-center">TITULO MUY COOL</h1>
+            <h1 class="text-center" id="tituloInside">TITULO MUY COOL</h1>
             <div class="row">
-              <p class="header_element">Tiempo de lectura: 12 minutos</p>
-              <p class="header_element">Autor: Jose</p>
-              <p class="header_element">Fecha de creacion: 12/04/2024</p>             
+              <p class="header_element">Tiempo de lectura: <span id="readTime">12 minutos</span></p>
+              <p class="header_element">Autor: <span id="author">Jose</span></p>
+              <p class="header_element">Fecha de creacion: <span id="date">12/04/2024</span></p>             
               <a class="header_element" id="btn-like" onclick="stateChangeLikes()"> <i class="far fa-heart"></i></a><span id="number_of_likes">100</span>
               <a class="header_element" id="btn-comments" href="#comentarios" data-toggle="modal"><i class="far fa-comment" aria-hidden="true"></i> Comentarios</a> 
             </div>
           </div>
           <div class="whitespace"></div>
           <div class="inside-content">
-            <span>
+            <span id="content">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc libero ligula, blandit id felis at, maximus posuere turpis. 
               Quisque ultricies ac sapien eu bibendum. Donec tortor lectus, tristique sit amet sem eu, tincidunt tempor ipsum. 
               Aliquam porta arcu a lectus placerat, ut placerat ligula consectetur. Praesent in lorem at magna maximus ornare et sed nibh. 
@@ -224,6 +224,7 @@
   <script src="./../javascript/sidebar.js"></script>
   <script src="./../javascript/ajax-handler.js"></script>
   <script src="./../javascript/user.js"></script>
+  <script src="./../javascript/insideblog.js"></script>
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">

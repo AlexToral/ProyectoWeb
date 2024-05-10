@@ -23,10 +23,11 @@ const BlogSchema = new mongoose.Schema({
     content: String,
     imageUrl: String,
     author: String,
+    readTime: String,
+    date: { type: Date, default: Date.now },
     likes: { type: Number, default: 0 },
     comments: { type: Number, default: 0 },
     category: String,
-    id: Number
 });
 
 const BlogModel = mongoose.model("Blog", BlogSchema, "Blog");

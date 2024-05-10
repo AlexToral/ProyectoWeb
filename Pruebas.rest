@@ -125,3 +125,7 @@ Content-Type: application/json
 {
   "id": "663d20cae5f6bf4f1c1889f9"
 }
+###
+GET http://localhost:3000/post/6636e21c520b43ddebcbc91c
+###
+GET http://localhost:3000/inside-post
