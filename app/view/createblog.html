@@ -117,21 +117,25 @@
 
     <div class="container-fluid"> <!-- CONTENIDO-->
       <div class="row">
-        <div class="col-md-1 align-items-center justify-content-end" id="left_sidebar">
-          <div class="sidebar-item">
-            <h3>Subir texto:</h3>
-            <input type="file" accept=".txt" id="CreateUploadedText">
-          </div>
+        <div class="col-md-2 align-items-center justify-content-end" id="left_sidebar">
           <div class="sidebar-item">
             <h3>Subir miniatura:</h3>
-            <input type="file" accept="image/*" id="CreateImage">
+            <input id="CreateImage">
+          </div>
+          <div class="sidebar-item">
+            <h3>Los temas:</h3>
+            <input id="CreateThemes">
+          </div>
+          <div class="sidebar-item">
+            <h3>Read Time:</h3>
+            <input id="CreateReadTime">
           </div>
           <div class="sidebar-item">
             <h3>Listo?</h3>
             <button class="btn-success" id="CreateAccept">Aceptar</button>
           </div>
         </div>
-        <div class="col-md-9 container align-items-center" id="Main_Conten" > <!-- Main Content Container -->
+        <div class="col-md-8 container align-items-center" id="Main_Conten" > <!-- Main Content Container -->
                   <h1>Inserta tu titulo:</h1> <!-- mr-3 para agregar espacio entre el título y el input -->
                   <input type="text" class="form-control col-auto" placeholder="Inserta tu texto" maxlength="28" id="CreateTitle">
                   <div class="whitespace"></div>
@@ -155,10 +159,6 @@
           </a>
         </div>
         <div class="sidebar-item">
-          <a href="createblog.html" id = "edit-post-link"> <i class="fa fa-paint-brush" aria-hidden="true">
-              <span>Editar un Blog</span></i></a>
-        </div>
-        <div class="sidebar-item">
           <a href="blog.html" id = "post-link"><i class="fas fa-newspaper fa-m fa-fw"></i>
           <span>Articulos</span>
         </a>
@@ -169,9 +169,6 @@
         </div>
 
 
-        <div class="sidebar-item d-flex justify-content-center"> <!-- Contenedor para centrar -->
-          <span>Seguidores: xxx</span>
-        </div>
         
       </div> <!-- Right Sidebar -->
 

@@ -12,9 +12,9 @@ app.use(express.json());
 const router = require('././javascript/router');
 
 // Conexión a MongoDB con autenticación, utilizando las credenciales desde la configuración
-const config = require('./../config');
-const username = config.mongodb.username;
-const password = config.mongodb.password;
+
+let username;
+let password;
 
 // Conectar a MongoDB con credenciales
 mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.0linyln.mongodb.net/Projecto`, {

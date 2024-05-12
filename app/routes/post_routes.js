@@ -187,10 +187,6 @@ router.route('/')
                 </a>
               </div>
               <div class="sidebar-item">
-                <a href="createblog.html" id="edit-post-link"> <i class="fa fa-paint-brush" aria-hidden="true">
-                    <span>Editar un Blog</span></i></a>
-              </div>
-              <div class="sidebar-item">
                 <a href="blog.html" id = "post-link"><i class="fas fa-newspaper fa-m fa-fw"></i>
                 <span>Articulos</span>
               </a>
@@ -485,10 +481,6 @@ router.route('/:id')
                   <a href="createblog.html" id = "create-post-link"> <i class="fa fa-pen" aria-hidden="true">
                       <span>Crear un blog</span></i>
                   </a>
-                </div>
-                <div class="sidebar-item">
-                  <a href="createblog.html" id = "edit-post-link"> <i class="fa fa-paint-brush" aria-hidden="true">
-                      <span>Editar un Blog</span></i></a>
                 </div>
                 <div class="sidebar-item">
                   <a href="blog.html" id = "post-link"><i class="fas fa-newspaper fa-m fa-fw"></i>

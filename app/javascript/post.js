@@ -234,9 +234,11 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
             var title =document.getElementById('CreateTitle').value;
             var content =document.getElementById('CreateText').value;
             var image = document.getElementById('CreateImage').value;
+            var themes = document.getElementById('CreateThemes').value;
+            var readTime = document.getElementById('CreateReadTime').value;
             var userid= localStorage.getItem('token');
 
-            var newPost = {title: title, description: " ", content: content, imageUrl: image, author: userid, likes: 0, comments: 0, category: " "};
+            var newPost = {title: title, description: themes, content: content, imageUrl: image, author: userid, likes: 0, comments: 0, readTime: readTime};
             try{
                 const response = await fetch('/post-create', {
                     method: 'POST',
@@ -333,7 +335,7 @@ async function previewPost(id){
               <p class="card-text">${postData.content}</p>
               <p>AUTOR: ${postData.author}</p>
               <p>FECHA: ${formatoNormal}</p>
-              <p>TEMAS: ${postData.category}</p>
+              <p>TEMAS: ${postData.description}</p>
             </div>
           </div>
     `
@@ -346,7 +348,7 @@ function postToHTML(post)
     <input type="hidden" id="postId" value="${post._id}">
     <button class="transparent_btn" onclick="loadPreviewPosts('${post._id}')"><img class="card-img" src="${post.imageUrl}"></button>
       <h3 class="cardTitle">${post.title}</h3>
-      <p class="cardText">${post.description}</p>
+      <p class="cardText">${post.content}</p>
     </div> 
   </div>
   <div class="whitespace"></div>

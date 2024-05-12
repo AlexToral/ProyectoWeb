@@ -137,9 +137,9 @@ router.post('/post-create', async (req, res) => {
             const user = await usersModel.findById(req.userId);
             const userName = user.name;
             console.log(userName);
-            const { title, description, content, imageUrl, likes, comments, category } = req.body;
+            const { title, description, content, imageUrl, likes, comments, readTime } = req.body;
             const author = userName;
-            const newPost = new postModel({ title, description, content, imageUrl, author, likes, comments, category });
+            const newPost = new postModel({ title, description, content, imageUrl, author, likes, comments, readTime });
             newPost.save()
                 .then(savedPost => {
                     res.status(200).json({ message: "Post creado", postId: savedPost.id });

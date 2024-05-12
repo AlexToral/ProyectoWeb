@@ -124,6 +124,6 @@ GET http://localhost:3000/inside-post
 ###
 GET http://localhost:3000/display-posts
 ###
-GET http://localhost:3000/comment/663d69a85b8ca6e2aa2595ba
+GET http://localhost:3000/comment/664032fbbbe209787f9bd89a
 ###
-GET http://localhost:3000/posts-preview/First-Blog-Post
+GET http://localhost:3000/posts-preview/664032fbbbe209787f9bd89a
