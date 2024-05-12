@@ -25,7 +25,6 @@ mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.0linyln.mongodb
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Error de conexión:')); // Manejo de errores
 db.once('open', () => {
-    console.log("username: " + username + "pass: "+ password);
     console.log('Conectado a MongoDB'); // Conexión exitosa
 });
 
@@ -126,6 +125,7 @@ app.get('/inside-post', (req, res) => {
 });
 
 app.listen(port, () => {
+    console.log("username: " + username + "pass: "+ password);
     console.log(`Servidor corriendo en el puerto ${port}`);
 });
 
