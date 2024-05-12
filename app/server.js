@@ -80,6 +80,11 @@ app.get('/javascript/pagination.js', (req, res) => {
     res.sendFile(path.join(__dirname, 'javascript', 'pagination.js'));
 });
 
+app.get('/javascript/searchbar.js', (req, res) => {
+    res.set('Content-Type', 'application/javascript');
+    res.sendFile(path.join(__dirname, 'javascript', 'searchbar.js'));
+});
+
 app.get('/javascript/ajax-handler.js', (req, res) => {
     res.set('Content-Type', 'application/javascript');
     res.sendFile(path.join(__dirname, 'javascript', 'ajax-handler.js'));

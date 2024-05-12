@@ -156,13 +156,10 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
     
     document.addEventListener('DOMContentLoaded', async function() {
         const acceptCreatePost= document.getElementById('CreateAccept');
-        const pagination = document.getElementById('paginationContainer');
         const previous = document.getElementById('previous');
         const left = document.getElementById('left');
         const next = document.getElementById('next');
 
-    
-        console.log(next);
         try
         {
             const posts = await fetch ('/display-posts', {
@@ -173,7 +170,6 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
             if(posts.ok)
                 {
                     const postsResponse = await posts.json();
-                    const total = postsResponse.length;
                     left.innerHTML = `<div class="whitespace"></div>\n${postsResponse.slice(document.getElementById('startIndex').value, document.getElementById('endIndex').value).map(postToHTML).join('')}`;
                     
                 }
@@ -185,8 +181,14 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
         }
         catch(e)
         {
-            alert(e.errorMessage);
+            console.error("Error al cargar los posts: ", e.errorMessage);
         }
+        if(previous === null)
+        {
+            console.log("No hay botón de preview");
+        }
+        else{
+        
         previous.addEventListener('click',  function(event) 
         {
             console.log("previous?");
@@ -199,6 +201,12 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
                 alert('No hay más páginas');
             }
         });
+    }
+    if(next === null)
+        {
+            console.log("No hay botón de next");
+        }
+        else{
         next.addEventListener('click', function(event) 
         {
             console.log("next?");
@@ -212,7 +220,8 @@ class Post //title, description,content, imageUrl, author, likes, comments, cate
             {
                 alert('No hay más páginas');
             }
-        });     
+        });   
+    }  
         if(acceptCreatePost === null)
         {
             console.log("No hay botón de crear post");
